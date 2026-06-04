@@ -109,6 +109,7 @@ products:
 - Saúde animal: tom informativo, não prescritivo; reforçar "consulte um veterinário".
 - Títulos ≤ 70 caracteres; descrições meta ≤ 160.
 - Posts saem com `draft: true` por padrão.
+- **Imagem de capa:** a foto do **1º produto** da lista vira a capa do post — aparece nos cards (home/categorias/`/para/`) e no preview de redes sociais/WhatsApp (`og:image`). **Coloque o produto principal/recomendado em primeiro.** Páginas sem produto usam `public/og-default.png` (logo).
 
 ## Estratégia de conteúdo (mix 60/20/20)
 
