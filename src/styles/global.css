@@ -910,6 +910,14 @@ li { margin-bottom: 0.4em; }
 }
 .post__products h2 { margin-top: 0; margin-bottom: 1.5rem; }
 
+.post__share-bottom {
+  max-width: var(--container-prose);
+  margin: 2.5rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border-light);
+}
+.post__share-cta { font-weight: 800; color: var(--color-dark); margin: 0; }
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import AffiliateDisclosure from '../../components/AffiliateDisclosure.astro';
 import ProductCard from '../../components/ProductCard.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
 import { SITE, AUTHOR } from '../../config/site';
 
 export async function getStaticPaths() {
@@ -184,6 +185,8 @@ const formattedDate = data.pubDate.toLocaleDateString('pt-BR', {
       </p>
     </header>
 
+    <ShareButtons url={url} title={data.title} />
+
     <AffiliateDisclosure />
 
     <div class="prose post__body">
@@ -202,6 +205,11 @@ const formattedDate = data.pubDate.toLocaleDateString('pt-BR', {
         </section>
       )
     }
+
+    <div class="post__share-bottom">
+      <p class="post__share-cta">Gostou? Compartilhe com quem tem pet 🐾</p>
+      <ShareButtons url={url} title={data.title} />
+    </div>
 
   </article>
 </BaseLayout>
