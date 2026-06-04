@@ -7,7 +7,7 @@
           "interval": [
             {
               "field": "cronExpression",
-              "expression": "0 7 * * *"
+              "expression": "0 0 7 * * *"
             }
           ]
         }
@@ -20,7 +20,7 @@
         -100,
         300
       ],
-      "notes": "Timezone da workflow = America/Sao_Paulo (Settings da workflow). Se preferir UTC, troque para 0 10 * * *."
+      "notes": "Cron do n8n tem 6 campos comecando por SEGUNDOS: [seg] [min] [hora] [dia] [mes] [dia-semana]. '0 0 7 * * *' = 07:00:00. Timezone da workflow = America/Sao_Paulo. Se preferir UTC, use '0 0 10 * * *'."
     },
     {
       "parameters": {
