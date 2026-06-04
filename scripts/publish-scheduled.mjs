@@ -8,7 +8,7 @@ const ROOT = join(__dirname, '..');
 const POSTS_DIR = join(ROOT, 'src', 'content', 'posts');
 
 const SITE_URL = 'https://abanou.com.br';
-const INDEXNOW_KEY = '4e523c2bffee9ad1faf1ecff5907c7fc';
+const INDEXNOW_KEY = '71836f28538541879c5954d5952b41d1';
 const SITE_HOST = 'abanou.com.br';
 
 // Avisa o IndexNow (Bing, Yandex, etc.) sobre URLs novas/atualizadas
