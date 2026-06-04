@@ -1,0 +1,99 @@
+{/*
+  MODELO DE POST — PETZ (ração / alimentação / consumíveis)
+  --------------------------------------------------------
+  Como usar:
+  1. Copie este arquivo para src/content/posts/<slug>.mdx
+  2. Substitua todos os [PLACEHOLDER].
+  3. Pegue os produtos na Petz (logado): nome, marca, imagem (og:image da página),
+     nota real, preço NORMAL (não o de assinante) e a URL do produto.
+  4. Baixe as imagens: monte um JSON e rode `node scripts/search-products.mjs --file ...`.
+  5. Regras Petz:
+     - Loja sempre `petz`. O botão "Ver na Petz" abre AUTOMÁTICO o modal do cupom ABANOU (10% off).
+     - Pode exibir preço: use `price` nos produtos + `priceCheckedAt: 'DD/MM/AAAA'` no frontmatter.
+       A tabela mostra a data; sem preço, a coluna some sozinha.
+     - Saúde animal: tom informativo, nunca prescritivo. Reforce "consulte o veterinário".
+  6. Mantenha `draft: true` e ajuste `pubDate` para a data de publicação.
+*/}
+---
+title: '[TÍTULO ≤ 70 caracteres — ex: As 5 melhores rações para cães idosos em 2026]'
+description: '[DESCRIÇÃO meta ≤ 160 caracteres com a palavra-chave]'
+pubDate: [AAAA-MM-DD]
+category: 'racao'   # racao | petiscos | higiene | ... (tipo de produto)
+tags: ['cães']      # animal: cães | gatos | peixes | outros (+ outras tags)
+featured: false
+draft: true
+author: 'Márcio Costa'
+priceCheckedAt: '[DD/MM/AAAA]'   # data em que os preços foram consultados na Petz
+products:
+  - name: '[Nome do Produto 1]'
+    brand: '[Marca]'
+    rating: 0.0          # nota real da Petz
+    price: 0.00          # preço NORMAL (não o de assinante)
+    image: '/images/produtos/[slug-produto-1].webp'
+    stores:
+      - store: 'petz'
+        url: 'https://www.petz.com.br/produto/[...]'
+    pros:
+      - '[ponto positivo real 1]'
+      - '[ponto positivo real 2]'
+    cons:
+      - '[ponto negativo real 1]'
+  # ... repita o bloco para os demais produtos (ideal: 5)
+---
+
+import AffiliateButton from '../../components/AffiliateButton.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+import ProsCons from '../../components/ProsCons.astro';
+import AbanouSeal from '../../components/AbanouSeal.astro';
+
+[INTRODUÇÃO de 150-250 palavras: o problema do tutor, por que esse tipo de produto importa,
+e o que o post entrega. Cite a Petz e as marcas comparadas.]
+
+## Como avaliamos
+
+[Critérios objetivos do nicho — ex.: adequação por porte/idade, qualidade/ingredientes,
+reputação da marca, custo-benefício.]
+
+> ⚠️ **Importante:** [disclaimer adequado ao tema. Em saúde animal, lembre que produtos de
+> manutenção são para pets saudáveis e que casos específicos pedem orientação do veterinário.]
+
+## Tabela comparativa
+
+<ComparisonTable
+  source="[slug-do-post]"
+  priceDate="[DD/MM/AAAA]"
+  rows={[
+    { name: '[Produto 1]', brand: '[Marca]', rating: 0.0, price: 0.00, highlight: '[Destaque]', stores: [{ store: 'petz', url: 'https://www.petz.com.br/produto/[...]' }] },
+    // ... demais linhas
+  ]}
+/>
+
+## 1. [Nome do Produto 1] — [Destaque, ex: Melhor custo-benefício]
+
+<AbanouSeal />  {/* use o selo só no produto recomendado nº 1 */}
+
+[Análise de 150-300 palavras: para qual perfil/pet é indicado, pontos fortes no uso real,
+limitações e veredicto.]
+
+<ProsCons pros={['[positivo 1]', '[positivo 2]']} cons={['[negativo 1]']} />
+
+<AffiliateButton href="https://www.petz.com.br/produto/[...]" store="petz" source="[slug-do-post]" />
+
+---
+
+{/* Repita a seção acima (sem o <AbanouSeal />) para os produtos 2 a 5 */}
+
+## Como escolher
+
+[Guia de decisão em 3-4 perguntas que ajudam o tutor a escolher entre os produtos.]
+
+> 🎟️ Fechou a escolha? No carrinho da Petz, **aplique o cupom `ABANOU`** e ganhe **10% de desconto** — e ainda apoia o nosso trabalho e o Gatil Irmã Francisca 💛.
+
+## Perguntas frequentes
+
+[3-5 perguntas frequentes do nicho, em texto. Espelhe-as no campo `faq` do frontmatter
+para gerar o schema FAQPage — o texto do faq DEVE ser igual ao visível.]
+
+---
+
+*As recomendações acima passam pela nossa metodologia de pesquisa. Dúvidas? [Fale com a gente](/contato/).*

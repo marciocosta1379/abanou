@@ -43,6 +43,10 @@ npm run publish-scheduled  # Publica posts agendados com pubDate <= hoje
 5. **Preencher** os `[TODO]`s com análise real.
 6. **Publicar**: `draft: false` + `npm run deploy` (imediato) ou agendar via `pubDate` futura (`publish-scheduled` cuida).
 
+## Modelos de post (templates)
+
+- `templates/post-petz.template.mdx` — modelo pronto para artigos da **Petz** (preço+data, tabela, selo, prós/contras, botões Petz com modal de cupom 10%, lembrete do cupom ABANOU, disclaimer de veterinário e FAQ). Copie para `src/content/posts/<slug>.mdx` e preencha os `[PLACEHOLDER]`.
+
 ## Categorias válidas
 
 `racao` | `petiscos` | `alimentadores` | `tecnologia-pet` | `passeio` | `conforto` | `higiene` | `brinquedos` | `plano-de-saude` | `saude-cuidados` | `guias`
