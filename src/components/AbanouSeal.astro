@@ -1,0 +1,64 @@
+---
+interface Props {
+  variant?: 'badge' | 'pill';
+  size?: number;
+  text?: string;
+}
+const { variant = 'badge', size = 104, text = 'Aprovado pelo Abanou' } = Astro.props;
+---
+
+{
+  variant === 'badge' ? (
+    <figure class="abanou-seal-badge">
+      <img
+        src="/images/selo-abanou.png"
+        alt={text}
+        width={size}
+        height={size}
+        loading="lazy"
+      />
+      {text && <figcaption>{text}</figcaption>}
+    </figure>
+  ) : (
+    <span class="abanou-seal-pill" role="img" aria-label={text}>
+      <img src="/images/selo-abanou.png" alt="" width="22" height="22" aria-hidden="true" />
+      {text}
+    </span>
+  )
+}
+
+<style>
+  .abanou-seal-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  .abanou-seal-badge img {
+    filter: drop-shadow(0 3px 8px rgba(16, 58, 70, 0.25));
+  }
+  .abanou-seal-badge figcaption {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--color-teal-hover);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .abanou-seal-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--color-teal-light);
+    color: var(--color-teal-hover);
+    border: 1.5px solid var(--color-teal);
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.7rem 0.25rem 0.3rem;
+    border-radius: 999px;
+    line-height: 1;
+  }
+  .abanou-seal-pill img { display: block; }
+</style>

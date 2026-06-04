@@ -1,0 +1,68 @@
+---
+import AffiliateButton from './AffiliateButton.astro';
+
+interface Props {
+  title?: string;
+  url: string;
+  source?: string;
+  highlights?: string[];
+}
+
+const {
+  title = 'Plano de saúde PetLove',
+  url,
+  source = 'plano-saude',
+  highlights = [],
+} = Astro.props;
+---
+
+<aside class="plan-callout">
+  <div class="plan-callout__head">
+    <span class="plan-callout__badge">Plano recomendado</span>
+    <h3 class="plan-callout__title">{title}</h3>
+  </div>
+  {
+    highlights.length > 0 && (
+      <ul class="plan-callout__list">
+        {highlights.map((h) => (
+          <li>{h}</li>
+        ))}
+      </ul>
+    )
+  }
+  <AffiliateButton href={url} store="petlove" source={source} block />
+  <p class="plan-callout__note">
+    Assinatura recorrente — valores e coberturas no site da PetLove. Contém link de afiliado.
+  </p>
+</aside>
+
+<style>
+  .plan-callout {
+    border: 2px solid var(--color-petlove);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    background: #fff;
+    box-shadow: var(--shadow-md);
+    margin: 2rem 0;
+  }
+  .plan-callout__head { margin-bottom: 1rem; }
+  .plan-callout__badge {
+    display: inline-block;
+    background: var(--color-petlove);
+    color: var(--color-petlove-text);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-sm);
+  }
+  .plan-callout__title { margin: 0.6rem 0 0; font-size: 1.25rem; }
+  .plan-callout__list { margin: 0 0 1.25rem; padding-left: 1.2rem; }
+  .plan-callout__list li { margin-bottom: 0.35rem; }
+  .plan-callout__note {
+    margin: 0.75rem 0 0;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+</style>

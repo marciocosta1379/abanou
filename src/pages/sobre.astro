@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, AUTHOR } from '../config/site';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: AUTHOR.name,
+  jobTitle: AUTHOR.role,
+  description: AUTHOR.bio,
+  url: AUTHOR.url,
+  worksFor: {
+    '@type': 'Organization',
+    name: SITE.name,
+    url: SITE.url,
+  },
+};
+---
+
+<BaseLayout
+  title="Sobre"
+  description={`Conheça a ${SITE.name}: nossa metodologia de pesquisa, quem está por trás e por que você pode confiar nas recomendações.`}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+  <article class="container prose section">
+    <h1>Sobre a {SITE.name}</h1>
+
+    <p>
+      A {SITE.name} nasceu para resolver um problema simples: quando você quer comprar algo
+      novo para o seu cão ou gato, a internet está cheia de listas genéricas, copiadas umas das
+      outras, escritas só para empurrar links. Aqui o trabalho é outro — pesquisa séria antes
+      de recomendar qualquer coisa. Só leva o selo <strong>✅ Abanou</strong> o que passa por
+      esse crivo.
+    </p>
+
+    <h2>Quem está por trás</h2>
+    <p>
+      <strong>{AUTHOR.name}</strong> — {AUTHOR.role}. {AUTHOR.bio}
+    </p>
+    <p>
+      Na prática, isso significa uma casa cheia: <strong>6 gatos, 3 cachorros e um aquário com
+      10 peixes</strong>. Comedouro entupido, fonte que faz barulho, ração que o gato torce o
+      nariz, brinquedo que dura um dia — já passei por tudo isso. É essa vivência diária que
+      orienta o que recomendo aqui: produto que não funcionaria na minha casa não ganha o selo
+      ✅ Abanou.
+    </p>
+
+    <h2>Como avaliamos (com honestidade)</h2>
+    <p>
+      Não testamos fisicamente todos os produtos que recomendamos — seria desonesto dizer que
+      compramos e usamos dezenas de itens. O que fazemos é uma <strong>pesquisa cuidadosa e
+      cruzada</strong> antes de cada recomendação:
+    </p>
+    <ol>
+      <li>
+        <strong>Especificações e composição:</strong> conferimos materiais, capacidade,
+        composição da ração, indicação por porte/idade e segurança direto nas fichas dos
+        fabricantes — sem repetir informação errada que circula por aí.
+      </li>
+      <li>
+        <strong>Avaliações reais de tutores:</strong> lemos dezenas a centenas de reviews de
+        quem realmente comprou, para entender durabilidade, defeitos comuns e o que esperar no
+        dia a dia com o pet.
+      </li>
+      <li>
+        <strong>Reclamações e pós-venda:</strong> checamos o Reclame Aqui e fóruns para
+        detectar problemas recorrentes e a qualidade do suporte de cada marca.
+      </li>
+      <li>
+        <strong>Fontes especializadas:</strong> cruzamos com veterinários, conteúdos técnicos
+        e comparativos de referência no Brasil. Saúde animal é assunto sério — quando o tema
+        envolve bem-estar, reforçamos: consulte sempre um veterinário.
+      </li>
+      <li>
+        <strong>Regra de ouro:</strong> se uma informação não é confirmada por pelo menos duas
+        fontes confiáveis, ela não entra na review.
+      </li>
+    </ol>
+    <p>
+      O resultado é um guia de compra fundamentado — não um teste de laboratório, e nós deixamos
+      isso claro. Quando apontamos um ponto negativo, é porque os dados e os tutores apontaram.
+    </p>
+
+    <h2>Nossa fonte de renda</h2>
+    <p>
+      Mantemos o site através de programas de afiliados — <strong>Amazon Associados</strong>,
+      <strong>Parceiro Petz</strong> e <strong>PetLove</strong>. Quando você compra um produto
+      pelo nosso link, recebemos uma pequena comissão — sem custo extra para você. Como Associado
+      da Amazon, ganhamos com compras qualificadas. Isso paga o tempo dedicado à pesquisa e à
+      manutenção do site.
+    </p>
+    <p>
+      <strong>Isso não influencia nossas opiniões.</strong> Já recomendamos produtos baratos em
+      vez de caros e já apontamos defeitos de marcas grandes. O critério é sempre o mesmo: o que
+      oferece o melhor resultado para o seu pet.
+    </p>
+
+    <h2>Compromisso social — 10% para quem mais precisa</h2>
+    <p>
+      Acreditamos que ajudar tutores a cuidar melhor dos seus pets também significa cuidar dos
+      que ainda não têm um lar. Por isso, <strong>10% de tudo que o Abanou arrecada é doado para
+      o <a href="https://gatilirmafrancisca.org.br/" target="_blank" rel="noopener noreferrer">Gatil
+      Irmã Francisca</a></strong>, que resgata, cuida e busca lares responsáveis para gatos.
+    </p>
+    <p>
+      Ou seja: quando você compra um produto pelos nossos links, além de não pagar nada a mais,
+      uma parte da nossa comissão vira ração, vacina e cuidado para quem está esperando uma
+      segunda chance. 💛
+    </p>
+
+    <h2>Fale com a gente</h2>
+    <p>
+      Tem uma dúvida, sugestão de review ou correção? <a href="/contato/">Entre em contato</a>.
+      Levamos correções a sério — se erramos uma spec, queremos saber.
+    </p>
+  </article>
+</BaseLayout>

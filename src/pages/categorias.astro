@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+
+const categories = [
+  { slug: 'racao',           label: 'Ração',                   icon: '🥩' },
+  { slug: 'petiscos',        label: 'Petiscos',                icon: '🦴' },
+  { slug: 'alimentadores',   label: 'Comedouros & Bebedouros', icon: '🍽️' },
+  { slug: 'tecnologia-pet',  label: 'Tecnologia Pet',          icon: '📡' },
+  { slug: 'passeio',         label: 'Passeio',                 icon: '🦮' },
+  { slug: 'conforto',        label: 'Conforto & Descanso',     icon: '🛏️' },
+  { slug: 'higiene',         label: 'Higiene',                 icon: '🧼' },
+  { slug: 'brinquedos',      label: 'Brinquedos',              icon: '🧸' },
+  { slug: 'plano-de-saude',  label: 'Plano de Saúde',          icon: '❤️' },
+  { slug: 'saude-cuidados',  label: 'Saúde & Cuidados',        icon: '💊' },
+  { slug: 'guias',           label: 'Guias de Compra',         icon: '📖' },
+];
+
+const countByCategory = new Map<string, number>();
+for (const post of allPosts) {
+  countByCategory.set(post.data.category, (countByCategory.get(post.data.category) ?? 0) + 1);
+}
+---
+
+<BaseLayout
+  title="Categorias"
+  description="Navegue pelos reviews e guias de compra organizados por tipo de produto para pets."
+>
+  <div class="container section">
+    <h1>Categorias</h1>
+    <p class="cat-subtitle">Escolha a categoria para ver os reviews disponíveis.</p>
+
+    <div class="cat-grid">
+      {categories.map(({ slug, label, icon }) => {
+        const count = countByCategory.get(slug) ?? 0;
+        return (
+          <a href={`/categorias/${slug}/`} class={`cat-card ${count === 0 ? 'cat-card--empty' : ''}`}>
+            <span class="cat-card__icon">{icon}</span>
+            <span class="cat-card__label">{label}</span>
+            <span class="cat-card__count">
+              {count > 0 ? `${count} review${count > 1 ? 's' : ''}` : 'Em breve'}
+            </span>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+.cat-subtitle {
+  color: var(--color-text-muted);
+  margin-bottom: 2.5rem;
+}
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.cat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  text-align: center;
+  transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
+}
+.cat-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-orange);
+  transform: translateY(-2px);
+}
+.cat-card--empty { opacity: 0.6; }
+.cat-card--empty:hover { border-color: var(--color-border); transform: none; box-shadow: none; }
+.cat-card__icon { font-size: 2rem; }
+.cat-card__label { font-weight: 700; color: var(--color-dark); font-size: 0.95rem; }
+.cat-card__count { font-size: 0.8rem; color: var(--color-text-muted); }
+</style>

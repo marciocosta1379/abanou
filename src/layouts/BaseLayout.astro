@@ -1,0 +1,199 @@
+---
+import { SITE } from '../config/site';
+import '../styles/global.css';
+import CookieBanner from '../components/CookieBanner.astro';
+
+interface Props {
+  title?: string;
+  fullTitle?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  pubDate?: Date;
+  updatedDate?: Date;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  fullTitle,
+  description = SITE.description,
+  image = '/og-default.png',
+  type = 'website',
+  pubDate,
+  updatedDate,
+  noindex = false,
+} = Astro.props;
+
+const pageTitle = fullTitle ?? (title ? `${title} | ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+// Destaque do item de menu da seção atual
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath === href || currentPath.startsWith(href);
+const socialImage = new URL(image, Astro.site).toString();
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  inLanguage: SITE.locale,
+};
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:locale" content="pt_BR" />
+    {pubDate && <meta property="article:published_time" content={pubDate.toISOString()} />}
+    {updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <slot name="head" />
+
+    <!-- Google Analytics 4 (só em produção, carrega após o conteúdo) -->
+    {import.meta.env.PROD && (
+      <>
+        <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-5RRWWMJM35"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-5RRWWMJM35', { send_page_view: true });
+        </script>
+      </>
+    )}
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="/" class="logo" aria-label="Abanou - Início">
+          <img
+            src="/images/logo.png"
+            alt="Abanou — Reviews que seu pet aprova"
+            width="242"
+            height="84"
+            fetchpriority="high"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <span class="logo-text" style="display:none">
+            <strong>Aba<span>nou</span></strong>
+            <small>Testamos · Comparamos · Aprovamos</small>
+          </span>
+        </a>
+
+        <nav aria-label="Navegação principal">
+          <a href="/" class:list={{ 'is-active': isActive('/') }} aria-current={isActive('/') ? 'page' : undefined}>Início</a>
+          <a href="/categorias/" class:list={{ 'is-active': isActive('/categorias/') }} aria-current={isActive('/categorias/') ? 'page' : undefined}>Categorias</a>
+          <a href="/sobre/" class:list={{ 'is-active': isActive('/sobre/') }} aria-current={isActive('/sobre/') ? 'page' : undefined}>Sobre</a>
+          <a href="/contato/" class:list={{ 'is-active': isActive('/contato/') }} aria-current={isActive('/contato/') ? 'page' : undefined}>Contato</a>
+          <a href="/pesquisa/" class="nav-search" aria-label="Pesquisar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <svg class="footer-paw" viewBox="0 0 64 64" fill="currentColor" aria-hidden="true"><ellipse cx="20" cy="22" rx="7" ry="9"/><ellipse cx="44" cy="22" rx="7" ry="9"/><ellipse cx="10" cy="40" rx="6" ry="8"/><ellipse cx="54" cy="40" rx="6" ry="8"/><path d="M32 34c9 0 16 6 16 13 0 6-7 9-16 9s-16-3-16-9c0-7 7-13 16-13z"/></svg>
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand__top">
+            <img src="/images/selo-abanou.png" alt="" width="56" height="56" class="footer-seal" aria-hidden="true" loading="lazy" />
+            <div>
+              <div class="footer-brand__name">Aba<span>nou</span></div>
+              <div class="footer-brand__tagline">Reviews que seu pet aprova</div>
+            </div>
+          </div>
+          <p>Reviews honestos de produtos para cães e gatos: ração, comedouros, tecnologia pet e muito mais.</p>
+          <p class="footer-brand__cause">💛 Doamos <strong>10%</strong> da nossa arrecadação para o
+            <a href="https://gatilirmafrancisca.org.br/" target="_blank" rel="noopener noreferrer">Gatil Irmã Francisca</a>.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Categorias</h4>
+          <ul>
+            <li><a href="/categorias/racao/">Ração</a></li>
+            <li><a href="/categorias/alimentadores/">Comedouros & Bebedouros</a></li>
+            <li><a href="/categorias/tecnologia-pet/">Tecnologia Pet</a></li>
+            <li><a href="/categorias/plano-de-saude/">Plano de Saúde</a></li>
+            <li><a href="/categorias/">Ver todas</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Por pet</h4>
+          <ul>
+            <li><a href="/para/caes/">Para cães</a></li>
+            <li><a href="/para/gatos/">Para gatos</a></li>
+            <li><a href="/para/peixes/">Para peixes</a></li>
+            <li><a href="/para/outros/">Outros pets</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Institucional</h4>
+          <ul>
+            <li><a href="/sobre/">Sobre nós</a></li>
+            <li><a href="/contato/">Contato</a></li>
+            <li><a href="/divulgacao-afiliado/">Afiliados</a></li>
+            <li><a href="/politica-privacidade/">Privacidade</a></li>
+            <li><a href="/rss.xml">RSS Feed</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom container">
+        <span>&copy; {new Date().getFullYear()} {SITE.name}. Todos os direitos reservados.</span>
+        <div style="display:flex;gap:1.25rem;flex-wrap:wrap">
+          <a href="/politica-privacidade/">Privacidade</a>
+          <a href="/divulgacao-afiliado/">Divulgação de Afiliado</a>
+        </div>
+      </div>
+
+      <p class="footer-disclosure">
+        Como Associado da Amazon, eu ganho com compras qualificadas. Este site também
+        participa dos programas de afiliados da Petz e da PetLove. Compras feitas através
+        dos nossos links podem gerar uma comissão sem custo adicional para você.
+      </p>
+    </footer>
+    <CookieBanner />
+  </body>
+</html>
