@@ -1,0 +1,100 @@
+{/*
+  MODELO DE POST — AMAZON (gadgets / duráveis)
+  --------------------------------------------
+  Como usar:
+  1. Copie este arquivo para src/content/posts/<slug>.mdx
+  2. Substitua todos os [PLACEHOLDER].
+  3. Pegue os produtos na Amazon (logado): nome, marca, imagem, nota real e o ASIN.
+     - ASIN está na URL do produto: amazon.com.br/dp/<ASIN>
+     - Link de afiliado = https://www.amazon.com.br/dp/<ASIN>?tag=abanou-20
+       (ou use o SiteStripe, que já embute a tag)
+     - Imagem: pegue a imagem principal da página do produto.
+  4. Baixe as imagens: monte um JSON e rode `node scripts/search-products.mjs --file ...`.
+  5. Regras Amazon (IMPORTANTE):
+     - NÃO exibir preço fixo. Sem `price` e sem `priceCheckedAt` — os cards mostram
+       "Confira o preço atualizado na loja". (Preço só com a PA-API liberada.)
+     - Loja sempre `amazon`. Sem cupom (a Amazon não usa cupom de afiliado).
+     - A frase "Como Associado da Amazon, eu ganho com compras qualificadas" aparece no
+       rodapé do site (cumpre a exigência) — não precisa repetir no corpo.
+  6. Mantenha `draft: true` e ajuste `pubDate` para a data de publicação.
+*/}
+---
+title: '[TÍTULO ≤ 70 caracteres — ex: Os 5 melhores comedouros automáticos para gatos em 2026]'
+description: '[DESCRIÇÃO meta ≤ 160 caracteres com a palavra-chave]'
+pubDate: [AAAA-MM-DD]
+category: 'alimentadores'   # alimentadores | tecnologia-pet | conforto | higiene | brinquedos | passeio ...
+tags: ['gatos']             # animal: cães | gatos | peixes | outros (+ outras tags)
+featured: false
+draft: true
+author: 'Márcio Costa'
+products:
+  - name: '[Nome do Produto 1]'
+    brand: '[Marca]'         # opcional; omita se for genérico
+    rating: 0.0              # nota real da Amazon
+    # SEM price (preço oculto até a PA-API)
+    image: '/images/produtos/[slug-produto-1].webp'
+    stores:
+      - store: 'amazon'
+        url: 'https://www.amazon.com.br/dp/[ASIN]?tag=abanou-20'
+    pros:
+      - '[ponto positivo real 1]'
+      - '[ponto positivo real 2]'
+    cons:
+      - '[ponto negativo real 1]'
+  # ... repita o bloco para os demais produtos (ideal: 5)
+---
+
+import AffiliateButton from '../../components/AffiliateButton.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+import ProsCons from '../../components/ProsCons.astro';
+import AbanouSeal from '../../components/AbanouSeal.astro';
+
+[INTRODUÇÃO de 150-250 palavras: o problema/contexto, por que esse gadget ajuda, e o que o
+post entrega. Cite que comparou os modelos por critérios objetivos.]
+
+## Como avaliamos
+
+[Critérios objetivos do produto — ex.: capacidade, conectividade (Wi-Fi/app), recursos extras,
+material/segurança, avaliações reais.]
+
+> ⚠️ [disclaimer adequado ao tema, quando fizer sentido. Em assuntos de saúde/bem-estar,
+> lembre de consultar o veterinário.]
+
+## Tabela comparativa
+
+{/* Sem coluna de preço (Amazon). A coluna NOTA aparece se houver rating. */}
+<ComparisonTable
+  source="[slug-do-post]"
+  rows={[
+    { name: '[Produto 1]', brand: '[Marca]', rating: 0.0, highlight: '[Destaque]', stores: [{ store: 'amazon', url: 'https://www.amazon.com.br/dp/[ASIN]?tag=abanou-20' }] },
+    // ... demais linhas
+  ]}
+/>
+
+## 1. [Nome do Produto 1] — [Destaque, ex: Melhor geral]
+
+<AbanouSeal />  {/* use o selo só no produto recomendado nº 1 */}
+
+[Análise de 150-300 palavras: para qual perfil/pet é indicado, pontos fortes no uso real,
+limitações e veredicto.]
+
+<ProsCons pros={['[positivo 1]', '[positivo 2]']} cons={['[negativo 1]']} />
+
+<AffiliateButton href="https://www.amazon.com.br/dp/[ASIN]?tag=abanou-20" store="amazon" source="[slug-do-post]" />
+
+---
+
+{/* Repita a seção acima (sem o <AbanouSeal />) para os produtos 2 a 5 */}
+
+## Como escolher
+
+[Guia de decisão em 3-4 perguntas que ajudam o leitor a escolher entre os produtos.]
+
+## Perguntas frequentes
+
+[3-5 perguntas frequentes do nicho, em texto. Espelhe-as no campo `faq` do frontmatter
+para gerar o schema FAQPage — o texto do faq DEVE ser igual ao visível.]
+
+---
+
+*As recomendações acima passam pela nossa metodologia de pesquisa. Dúvidas? [Fale com a gente](/contato/).*

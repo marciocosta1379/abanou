@@ -45,7 +45,10 @@ npm run publish-scheduled  # Publica posts agendados com pubDate <= hoje
 
 ## Modelos de post (templates)
 
-- `templates/post-petz.template.mdx` — modelo pronto para artigos da **Petz** (preço+data, tabela, selo, prós/contras, botões Petz com modal de cupom 10%, lembrete do cupom ABANOU, disclaimer de veterinário e FAQ). Copie para `src/content/posts/<slug>.mdx` e preencha os `[PLACEHOLDER]`.
+- `templates/post-petz.template.mdx` — modelo pronto para artigos da **Petz** (preço+data, tabela, selo, prós/contras, botões Petz com modal de cupom 10%, lembrete do cupom ABANOU, disclaimer de veterinário e FAQ).
+- `templates/post-amazon.template.mdx` — modelo pronto para artigos da **Amazon** (gadgets; **preço oculto**, tag `abanou-20`, sem cupom, tabela sem coluna de preço, selo, prós/contras e FAQ).
+
+Copie o modelo desejado para `src/content/posts/<slug>.mdx` e preencha os `[PLACEHOLDER]`.
 
 ## Categorias válidas
 
