@@ -8,14 +8,23 @@ const { variant = 'full' } = Astro.props;
 {
   variant === 'full' ? (
     <aside class="disclosure" role="note">
-      <strong>Divulgação:</strong> este artigo contém links de afiliado ou por cupom de
-      desconto. Se você comprar através deles, podemos receber uma pequena comissão sem custo
-      adicional para você. Isso nos ajuda a manter o site no ar, mas não influencia nossas
-      recomendações — só indicamos produtos que avaliamos com critério. E tem mais:
-      <strong>10% de tudo que arrecadamos é doado para o
-      <a href="https://gatilirmafrancisca.org.br/" target="_blank" rel="noopener noreferrer">Gatil Irmã Francisca</a></strong>,
-      que resgata e cuida de gatos. 💛
+      <strong class="disclosure__label">Divulgação:</strong>
+      <span class="disclosure__body">
+        este artigo contém links de afiliado ou por cupom de desconto. Se você comprar através
+        deles, podemos receber uma pequena comissão sem custo adicional para você. Isso nos ajuda
+        a manter o site no ar, mas não influencia nossas recomendações — só indicamos produtos que
+        avaliamos com critério. E tem mais:
+        <strong>10% de tudo que arrecadamos é doado para o
+        <a href="https://gatilirmafrancisca.org.br/" target="_blank" rel="noopener noreferrer">Gatil Irmã Francisca</a></strong>,
+        que resgata e cuida de gatos. 💛
+      </span>
     </aside>
+
+    <style>
+      .disclosure__label { flex-shrink: 0; }
+      .disclosure__body { flex: 1; min-width: 0; }
+      .disclosure__body a { color: var(--color-teal-hover); font-weight: 700; }
+    </style>
   ) : (
     <p class="disclosure disclosure--mini">
       <em>Contém links de afiliado. <a href="/divulgacao-afiliado/">Saiba mais</a>.</em>
