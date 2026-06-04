@@ -21,9 +21,10 @@ interface Row {
 interface Props {
   rows: Row[];
   source?: string;
+  priceDate?: string;
 }
 
-const { rows, source } = Astro.props;
+const { rows, source, priceDate } = Astro.props;
 
 const storeLinksOf = (r: Row): StoreLink[] =>
   r.stores && r.stores.length > 0
@@ -74,4 +75,15 @@ const showPrice = rows.some((r) => typeof r.price === 'number');
       }
     </tbody>
   </table>
+  {showPrice && priceDate && (
+    <p class="comparison__pricenote">💲 Preços consultados em {priceDate}, sujeitos a alteração. Confira o valor atual na loja.</p>
+  )}
 </div>
+
+<style>
+  .comparison__pricenote {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin: 0.6rem 0 0;
+  }
+</style>

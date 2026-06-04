@@ -21,9 +21,10 @@ interface Props {
   cons?: string[];
   rank?: number;
   source?: string;
+  priceDate?: string;
 }
 
-const { name, brand, rating, price, stores, affiliateUrl, image, pros, cons, rank, source } =
+const { name, brand, rating, price, stores, affiliateUrl, image, pros, cons, rank, source, priceDate } =
   Astro.props;
 
 // Normaliza para uma lista de lojas (retrocompat: affiliateUrl único = Amazon).
@@ -70,7 +71,10 @@ const stars = rating ? '★'.repeat(Math.round(rating)) + '☆'.repeat(5 - Math.
       }
       {
         priceFmt ? (
-          <p class="product-card__price">A partir de <strong>{priceFmt}</strong></p>
+          <p class="product-card__price">
+            <strong>{priceFmt}</strong>
+            {priceDate && <span class="product-card__pricedate"> · preço em {priceDate}</span>}
+          </p>
         ) : (
           <p class="product-card__price product-card__price--muted">Confira o preço atualizado na loja</p>
         )

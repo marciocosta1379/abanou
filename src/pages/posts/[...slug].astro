@@ -196,7 +196,7 @@ const formattedDate = data.pubDate.toLocaleDateString('pt-BR', {
           <h2>Resumo dos produtos avaliados</h2>
           <div class="product-grid">
             {products.map((p, i) => (
-              <ProductCard {...p} rank={i + 1} source={post.slug} />
+              <ProductCard {...p} rank={i + 1} source={post.slug} priceDate={data.priceCheckedAt} />
             ))}
           </div>
         </section>

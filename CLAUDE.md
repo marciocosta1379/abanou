@@ -97,7 +97,8 @@ products:
 - Todo post tem `<AffiliateDisclosure />` (injetado pelo template `[...slug].astro`) com o texto obrigatório: **"Como Associado da Amazon, eu ganho com compras qualificadas."**
 - Links de afiliado usam `rel="sponsored nofollow noopener noreferrer"`.
 - UTM source é sempre `abanou` (o `AffiliateButton` cuida disso).
-- **Não exibir preço fixo da Amazon** (regra da Amazon — só com PA-API).
+- **Não exibir preço fixo da Amazon** (regra da Amazon — só com PA-API). Para **Petz**, pode exibir preço: inclua `price` nos produtos + `priceCheckedAt: 'DD/MM/AAAA'` no frontmatter (a tabela mostra a data e some a coluna de preço quando não há). Use o **preço normal** (não o de assinante).
+- Botões **"Ver na Petz"** abrem automaticamente um **modal lembrando o cupom `ABANOU`** (componente global `CouponModal`).
 - Saúde animal: tom informativo, não prescritivo; reforçar "consulte um veterinário".
 - Títulos ≤ 70 caracteres; descrições meta ≤ 160.
 - Posts saem com `draft: true` por padrão.

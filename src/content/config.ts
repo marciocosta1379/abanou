@@ -28,6 +28,7 @@ const posts = defineCollection({
       description: z.string().max(160),
       pubDate: z.date(),
       updatedDate: z.date().optional(),
+      priceCheckedAt: z.string().optional(),
       image: image().optional(),
       imageAlt: z.string().optional(),
       category: z.enum([

@@ -42,10 +42,11 @@ const finalUrl = withTracking(href, source);
 ---
 
 <a
-  class:list={['affiliate-btn', meta.class, { 'affiliate-btn--block': block }]}
+  class:list={['affiliate-btn', meta.class, { 'affiliate-btn--block': block, 'js-petz-link': store === 'petz' }]}
   href={finalUrl}
   target="_blank"
   rel="sponsored nofollow noopener noreferrer"
+  data-coupon={store === 'petz' ? 'ABANOU' : undefined}
 >
   {finalLabel}
   <span aria-hidden="true">→</span>

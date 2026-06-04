@@ -685,6 +685,7 @@ li { margin-bottom: 0.4em; }
 .product-card__actions { display: flex; flex-direction: column; gap: 0.5rem; }
 .comparison__actions { display: flex; flex-direction: column; gap: 0.4rem; align-items: stretch; }
 .product-card__price--muted { color: var(--color-text-muted); font-weight: 600; }
+.product-card__pricedate { font-size: 0.78rem; color: var(--color-text-muted); font-weight: 500; }
 .nav-search { display: flex; align-items: center; padding: 0.25rem; color: var(--color-text-soft); transition: color 0.15s; }
 .nav-search:hover { color: var(--color-orange); }
 

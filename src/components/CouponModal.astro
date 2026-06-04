@@ -1,0 +1,89 @@
+---
+// Modal global que aparece ao clicar em qualquer botão "Ver na Petz" (.js-petz-link),
+// lembrando o visitante de usar o cupom de afiliado antes de ir para a loja.
+---
+
+<div id="petz-coupon-modal" class="coupon-modal" hidden>
+  <div class="coupon-modal__backdrop" data-close></div>
+  <div class="coupon-modal__box" role="dialog" aria-modal="true" aria-labelledby="coupon-modal-title">
+    <button class="coupon-modal__x" data-close aria-label="Fechar">×</button>
+    <div class="coupon-modal__emoji">🎟️</div>
+    <h3 id="coupon-modal-title">Use o cupom na Petz</h3>
+    <p>Copie o cupom abaixo e cole no carrinho da Petz. Não muda nada no seu preço — e ajuda a
+      manter o Abanou no ar, além da nossa doação de <strong>10% ao Gatil Irmã Francisca</strong> 💛.</p>
+    <div class="coupon-modal__code"><span id="coupon-code">ABANOU</span></div>
+    <button class="btn btn--primary coupon-modal__go" id="coupon-go" type="button">Copiar cupom e ir para a Petz</button>
+    <button class="coupon-modal__skip" id="coupon-skip" type="button">Ir sem o cupom</button>
+    <p class="coupon-modal__copied" id="coupon-copied" hidden>✅ Cupom copiado!</p>
+  </div>
+</div>
+
+<style>
+  .coupon-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+  .coupon-modal[hidden] { display: none; }
+  .coupon-modal__backdrop { position: absolute; inset: 0; background: rgba(16,58,70,0.55); backdrop-filter: blur(2px); }
+  .coupon-modal__box {
+    position: relative;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.75rem 1.5rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    animation: couponIn 0.18s ease-out;
+  }
+  @keyframes couponIn { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: none; } }
+  .coupon-modal__x { position: absolute; top: 0.6rem; right: 0.8rem; background: none; border: none; font-size: 1.6rem; line-height: 1; color: var(--color-text-muted); cursor: pointer; }
+  .coupon-modal__emoji { font-size: 2.4rem; }
+  .coupon-modal__box h3 { margin: 0.4rem 0 0.6rem; color: var(--color-dark); }
+  .coupon-modal__box p { color: var(--color-text-soft); font-size: 0.92rem; line-height: 1.6; margin: 0 0 1rem; }
+  .coupon-modal__code {
+    border: 2px dashed var(--color-petz);
+    color: var(--color-petz);
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.1rem;
+    background: #f2fbff;
+  }
+  .coupon-modal__go { width: 100%; justify-content: center; }
+  .coupon-modal__skip { display: block; width: 100%; margin-top: 0.6rem; background: none; border: none; color: var(--color-text-muted); font-size: 0.85rem; cursor: pointer; text-decoration: underline; }
+  .coupon-modal__copied { color: var(--color-success); font-weight: 700; font-size: 0.85rem; margin: 0.75rem 0 0 !important; }
+</style>
+
+<script>
+  const modal = document.getElementById('petz-coupon-modal');
+  if (modal) {
+    let targetHref = null;
+    const codeEl = document.getElementById('coupon-code');
+    const copiedEl = document.getElementById('coupon-copied');
+    const open = (href, coupon) => {
+      targetHref = href;
+      if (coupon) codeEl.textContent = coupon;
+      copiedEl.hidden = true;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    };
+    const close = () => { modal.hidden = true; document.body.style.overflow = ''; };
+
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a.js-petz-link');
+      if (a) { e.preventDefault(); open(a.href, a.getAttribute('data-coupon') || 'ABANOU'); return; }
+      if (e.target.closest('[data-close]')) close();
+    });
+
+    document.getElementById('coupon-go').addEventListener('click', async () => {
+      const w = targetHref ? window.open(targetHref, '_blank', 'noopener') : null;
+      try { await navigator.clipboard.writeText(codeEl.textContent.trim()); copiedEl.hidden = false; } catch (_) {}
+      setTimeout(close, 700);
+    });
+    document.getElementById('coupon-skip').addEventListener('click', () => {
+      if (targetHref) window.open(targetHref, '_blank', 'noopener');
+      close();
+    });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });
+  }
+</script>
