@@ -34,17 +34,17 @@ const tg = `https://t.me/share/url?url=${e(url)}&text=${e(title)}`;
 </div>
 
 <style>
-  .share { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin: 1.5rem 0; }
-  .share__label { font-size: 0.85rem; font-weight: 700; color: var(--color-text-soft); }
-  .share__btns { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .share { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin: 1.25rem 0; }
+  .share__label { font-size: 0.8rem; font-weight: 700; color: var(--color-text-soft); line-height: 1; }
+  .share__btns { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
   .share__btn {
-    width: 40px; height: 40px;
+    width: 32px; height: 32px; padding: 0; flex-shrink: 0;
     display: inline-flex; align-items: center; justify-content: center;
     border-radius: 50%;
-    color: #fff; border: none; cursor: pointer;
+    color: #fff; border: none; cursor: pointer; line-height: 0;
     transition: transform 0.12s, filter 0.12s;
   }
-  .share__btn svg { width: 19px; height: 19px; }
+  .share__btn svg { width: 15px; height: 15px; display: block; }
   .share__btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
   .share__btn--wa { background: #25D366; }
   .share__btn--fb { background: #1877F2; }
