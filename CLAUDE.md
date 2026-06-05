@@ -109,7 +109,8 @@ products:
 - Saúde animal: tom informativo, não prescritivo; reforçar "consulte um veterinário".
 - Títulos ≤ 70 caracteres; descrições meta ≤ 160.
 - Posts saem com `draft: true` por padrão.
-- **Imagem de capa:** a foto do **1º produto** da lista vira a capa do post — aparece nos cards (home/categorias/`/para/`) e no preview de redes sociais/WhatsApp (`og:image`). **Coloque o produto principal/recomendado em primeiro.** Páginas sem produto usam `public/og-default.png` (logo).
+- **Imagem de capa:** a foto do **1º produto** da lista vira a capa do post nos cards (home/categorias/`/para/`). **Coloque o produto principal/recomendado em primeiro.** Páginas sem produto usam `public/og-default.png` (logo).
+- **Preview de redes sociais/WhatsApp (`og:image`):** é um **cartão social 1200×630 em JPG** (foto do 1º produto + título + marca), gerado por `scripts/make-og-images.mjs` em `public/images/og/<slug>.jpg`. Roda automático no `npm run deploy` (avulso: `npm run og`). **Nunca usar WebP na og:image** — o WhatsApp não renderiza preview WebP. Ao criar/reordenar posts, rode `npm run og` para atualizar o cartão.
 
 ## Estratégia de conteúdo (mix 60/20/20)
 

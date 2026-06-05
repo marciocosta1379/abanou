@@ -9,6 +9,7 @@ interface Props {
   fullTitle?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   type?: 'website' | 'article';
   pubDate?: Date;
   updatedDate?: Date;
@@ -20,6 +21,7 @@ const {
   fullTitle,
   description = SITE.description,
   image = '/og-default.png',
+  imageAlt = SITE.description,
   type = 'website',
   pubDate,
   updatedDate,
@@ -34,6 +36,11 @@ const currentPath = Astro.url.pathname;
 const isActive = (href: string) =>
   href === '/' ? currentPath === '/' : currentPath === href || currentPath.startsWith(href);
 const socialImage = new URL(image, Astro.site).toString();
+const socialImageType = socialImage.endsWith('.png')
+  ? 'image/png'
+  : socialImage.endsWith('.webp')
+    ? 'image/webp'
+    : 'image/jpeg';
 
 const websiteSchema = {
   '@context': 'https://schema.org',
@@ -70,6 +77,10 @@ const websiteSchema = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={socialImage} />
+    <meta property="og:image:type" content={socialImageType} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta property="og:locale" content="pt_BR" />
     {pubDate && <meta property="article:published_time" content={pubDate.toISOString()} />}
     {updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
@@ -79,6 +90,7 @@ const websiteSchema = {
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     <slot name="head" />
