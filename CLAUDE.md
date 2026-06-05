@@ -110,7 +110,7 @@ products:
 - Títulos ≤ 70 caracteres; descrições meta ≤ 160.
 - Posts saem com `draft: true` por padrão.
 - **Imagem de capa:** a foto do **1º produto** da lista vira a capa do post nos cards (home/categorias/`/para/`). **Coloque o produto principal/recomendado em primeiro.** Páginas sem produto usam `public/og-default.png` (logo).
-- **Preview de redes sociais/WhatsApp (`og:image`):** é um **cartão social 1200×630 em JPG** (foto do 1º produto + título + marca), gerado por `scripts/make-og-images.mjs` em `public/images/og/<slug>.jpg`. Roda automático no `npm run deploy` (avulso: `npm run og`). **Nunca usar WebP na og:image** — o WhatsApp não renderiza preview WebP. Ao criar/reordenar posts, rode `npm run og` para atualizar o cartão.
+- **Preview de redes sociais/WhatsApp (`og:image`):** é um **cartão social 1200×630 em JPG** (foto do 1º produto + título + marca), gerado por `scripts/make-og-images.mjs` em `public/images/og/<slug>.jpg`. Roda automático no `npm run deploy` (avulso: `npm run og`). **Nunca usar WebP na og:image** — o WhatsApp não renderiza preview WebP. O gerador **pula cartões já existentes** (preserva os renderizados com Arial no Windows, já que o CI Linux não tem Arial). Ao **criar** um post, `npm run og` gera o cartão que falta; ao **reordenar** os produtos de um post, rode `npm run og -- --force` (ou apague o JPG antigo).
 
 ## Estratégia de conteúdo (mix 60/20/20)
 

@@ -105,11 +105,22 @@ async function buildCard({ slug, title, image }) {
 }
 
 async function main() {
+  // Por padrão pula cartões que já existem (os commitados foram renderizados com a
+  // fonte Arial no Windows; o CI Linux não tem Arial e degradaria o texto). Use
+  // --force para regenerar todos (ex.: ao reordenar produtos de um post).
+  const force = process.argv.includes('--force');
+
   if (!existsSync(OG_DIR)) await mkdir(OG_DIR, { recursive: true });
   const files = (await readdir(POSTS_DIR)).filter((f) => f.endsWith('.mdx'));
   let ok = 0;
+  let skipped = 0;
   for (const f of files) {
     const slug = basename(f, '.mdx');
+    const out = join(OG_DIR, `${slug}.jpg`);
+    if (!force && existsSync(out)) {
+      skipped++;
+      continue;
+    }
     const raw = await readFile(join(POSTS_DIR, f), 'utf-8');
     const { title, image } = parseFrontmatter(raw);
     if (!title) {
@@ -120,7 +131,7 @@ async function main() {
     console.log(`  og: ${slug}.jpg${image ? '' : ' (sem produto — só marca)'}`);
     ok++;
   }
-  console.log(`\n${ok} cartões sociais gerados em public/images/og/`);
+  console.log(`\n${ok} cartão(ões) gerado(s), ${skipped} já existente(s) pulado(s). Use --force para regenerar todos.`);
 }
 
 main().catch((e) => {
