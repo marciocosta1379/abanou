@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 
 // Loja de afiliado de cada link. Cada produto pode ter mais de uma.
 const storeSchema = z.object({
-  store: z.enum(['amazon', 'petz', 'petlove']),
+  store: z.enum(['amazon', 'petz', 'petlove', 'hotmart']),
   url: z.string().url(),
 });
 

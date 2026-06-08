@@ -1,5 +1,5 @@
 ---
-type Store = 'amazon' | 'petz' | 'petlove';
+type Store = 'amazon' | 'petz' | 'petlove' | 'hotmart';
 
 interface Props {
   href: string;
@@ -13,6 +13,7 @@ const STORE_META: Record<Store, { label: string; class: string }> = {
   amazon: { label: 'Ver na Amazon', class: 'affiliate-btn--amazon' },
   petz: { label: 'Ver na Petz', class: 'affiliate-btn--petz' },
   petlove: { label: 'Conhecer plano PetLove', class: 'affiliate-btn--petlove' },
+  hotmart: { label: 'Conhecer o curso', class: 'affiliate-btn--hotmart' },
 };
 
 const { href, store = 'amazon', label, source = 'review', block = false } = Astro.props;

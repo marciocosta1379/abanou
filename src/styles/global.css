@@ -28,6 +28,9 @@
   --color-petlove: #e6007e;
   --color-petlove-hover: #c10069;
   --color-petlove-text: #ffffff;
+  --color-hotmart: #f04e23;
+  --color-hotmart-hover: #d8400f;
+  --color-hotmart-text: #ffffff;
 
   /* Success / Danger */
   --color-success: #1d8a5e;
@@ -680,6 +683,8 @@ li { margin-bottom: 0.4em; }
 .affiliate-btn--petz:hover { background: var(--color-petz-hover); color: var(--color-petz-text); }
 .affiliate-btn--petlove { background: var(--color-petlove); color: var(--color-petlove-text); }
 .affiliate-btn--petlove:hover { background: var(--color-petlove-hover); color: var(--color-petlove-text); }
+.affiliate-btn--hotmart { background: var(--color-hotmart); color: var(--color-hotmart-text); }
+.affiliate-btn--hotmart:hover { background: var(--color-hotmart-hover); color: var(--color-hotmart-text); }
 
 /* Múltiplos botões de loja */
 .product-card__actions { display: flex; flex-direction: column; gap: 0.5rem; }

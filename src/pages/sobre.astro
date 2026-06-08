@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE, AUTHOR } from '../config/site';
+import { SITE, AUTHOR, NETWORK } from '../config/site';
 
 const personSchema = {
   '@context': 'https://schema.org',
@@ -85,10 +85,10 @@ const personSchema = {
     <h2>Nossa fonte de renda</h2>
     <p>
       Mantemos o site através de programas de afiliados — <strong>Amazon Associados</strong>,
-      <strong>Parceiro Petz</strong> e <strong>PetLove</strong>. Quando você compra um produto
-      pelo nosso link, recebemos uma pequena comissão — sem custo extra para você. Como Associado
-      da Amazon, ganhamos com compras qualificadas. Isso paga o tempo dedicado à pesquisa e à
-      manutenção do site.
+      <strong>Parceiro Petz</strong>, <strong>PetLove</strong> e cursos na <strong>Hotmart</strong>.
+      Quando você compra por um dos nossos links, recebemos uma pequena comissão — sem custo extra
+      para você. Como Associado da Amazon, ganhamos com compras qualificadas. Isso paga o tempo
+      dedicado à pesquisa e à manutenção do site.
     </p>
     <p>
       <strong>Isso não influencia nossas opiniões.</strong> Já recomendamos produtos baratos em
@@ -108,6 +108,18 @@ const personSchema = {
       uma parte da nossa comissão vira ração, vacina e cuidado para quem está esperando uma
       segunda chance. 💛
     </p>
+
+    <h2>A nossa rede</h2>
+    <p>
+      O {SITE.name} faz parte de uma pequena rede de sites sobre a casa, todos mantidos por mim:
+    </p>
+    <ul>
+      {NETWORK.map((s) => (
+        <li>
+          <a href={s.url} target="_blank" rel="noopener">{s.name}</a> — {s.blurb}
+        </li>
+      ))}
+    </ul>
 
     <h2>Fale com a gente</h2>
     <p>

@@ -29,13 +29,14 @@ function parseArgs() {
 }
 
 // Normaliza as lojas de afiliado de um produto vindo do JSON.
-// Aceita: p.stores[], ou p.amazonUrl / p.petzUrl / p.petloveUrl, ou p.affiliateUrl (= Amazon).
+// Aceita: p.stores[], ou p.amazonUrl / p.petzUrl / p.petloveUrl / p.hotmartUrl, ou p.affiliateUrl (= Amazon).
 function storesOf(p) {
   if (Array.isArray(p.stores) && p.stores.length) return p.stores;
   const s = [];
   if (p.amazonUrl) s.push({ store: 'amazon', url: p.amazonUrl });
   if (p.petzUrl) s.push({ store: 'petz', url: p.petzUrl });
   if (p.petloveUrl) s.push({ store: 'petlove', url: p.petloveUrl });
+  if (p.hotmartUrl) s.push({ store: 'hotmart', url: p.hotmartUrl });
   if (!s.length && p.affiliateUrl) s.push({ store: 'amazon', url: p.affiliateUrl });
   if (!s.length) s.push({ store: 'amazon', url: '[TODO: link de afiliado]' });
   return s;

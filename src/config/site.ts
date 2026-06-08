@@ -20,3 +20,17 @@ export const AUTHOR = {
   bio: 'Pai de pet de carteirinha — divide a casa com 6 gatos, 3 cachorros e um aquário com 10 peixes. Criou o Abanou para ajudar outros tutores a escolher produtos sem cair em listas genéricas. Cada recomendação passa pela metodologia de pesquisa do site: especificações oficiais, avaliações reais de tutores e checagem de reclamações. Só leva o selo ✅ Abanou o que passa por esse crivo.',
   url: 'https://abanou.com.br/sobre/',
 } as const;
+
+// Rede de sites do mesmo autor (disclosure honesta na página Sobre / caixa de autor).
+export const NETWORK = [
+  {
+    name: 'Reforma Caseira',
+    url: 'https://reformacaseira.com.br',
+    blurb: 'Ferramentas, reforma e marcenaria amadora.',
+  },
+  {
+    name: 'Nerd Caseiro',
+    url: 'https://nerdcaseiro.com.br',
+    blurb: 'Automação, gadgets e impressão 3D pra sua casa.',
+  },
+] as const;
