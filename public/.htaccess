@@ -1,3 +1,15 @@
+# Canonical domain: www e http → https://abanou.com.br
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # www → não-www (mantém https)
+  RewriteCond %{HTTP_HOST} ^www\.abanou\.com\.br$ [NC]
+  RewriteRule ^(.*)$ https://abanou.com.br/$1 [R=301,L]
+  # http → https (sem www)
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP_HOST} ^abanou\.com\.br$ [NC]
+  RewriteRule ^(.*)$ https://abanou.com.br/$1 [R=301,L]
+</IfModule>
+
 # Cache de recursos estáticos
 <IfModule mod_expires.c>
   ExpiresActive On
