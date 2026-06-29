@@ -51,7 +51,7 @@ const articleSchema = {
 const primaryUrl = (p: (typeof products)[number]) =>
   p.stores?.[0]?.url ?? p.affiliateUrl;
 
-const productSchemas = products.map((p, i) => ({
+const productSchemas = products.filter((p) => p.price != null).map((p, i) => ({
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: p.name,
