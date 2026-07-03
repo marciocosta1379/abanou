@@ -37,7 +37,6 @@ async function main() {
 
     console.log(`Conectado. Enviando dist/ para ${REMOTE_DIR}...`);
     await client.ensureDir(REMOTE_DIR);
-    await client.clearWorkingDir();
     await client.uploadFromDir(DIST_DIR, REMOTE_DIR);
 
     console.log('Deploy concluído com sucesso!');
