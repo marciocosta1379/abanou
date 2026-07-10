@@ -28,6 +28,7 @@ const EXTRACT = `(() => {
     .filter(Boolean).flat();
   const p = ld.find(o => o && o['@type'] === 'Product') || {};
   const agg = p.aggregateRating || {};
+  const offers = Array.isArray(p.offers) ? p.offers[0] : p.offers;
   const h1 = document.querySelector('h1');
 
   // Variantes de tamanho: cada bloco de preço normal, com o rótulo (kg/g) do card pai.
@@ -47,6 +48,25 @@ const EXTRACT = `(() => {
   });
   const seen = new Set();
   const uniqVariants = variants.filter(v => { const k = v.label + v.normal; if (seen.has(k)) return false; seen.add(k); return true; });
+
+  // Preço principal por posição: menor elemento (sem filhos com preço) que bate o regex,
+  // ordenado pela distância vertical até o H1 — o bloco de preço da página fica logo
+  // abaixo do título, antes de qualquer carrossel de relacionados.
+  const priceRe = /R\\$\\s?[\\d.]+,\\d{2}/;
+  const h1Top = h1 ? h1.getBoundingClientRect().top + window.scrollY : 0;
+  const priceEls = [...document.querySelectorAll('body *')].filter((el) => {
+    if (el.children.length > 0) return false;
+    const t = (el.innerText || el.textContent || '').trim();
+    return priceRe.test(t) && t.length < 40;
+  });
+  const priceByPosition = priceEls
+    .map((el) => {
+      const rect = el.getBoundingClientRect();
+      return { text: el.innerText.trim(), top: rect.top + window.scrollY, visible: rect.width > 0 && rect.height > 0 };
+    })
+    .filter((p) => p.visible && p.top >= h1Top)
+    .sort((a, b) => a.top - b.top)
+    .slice(0, 6);
 
   // Nota média + nº de avaliações (procura padrões "4,8" e "(123)" / "123 avaliações").
   const bodyTxt = document.body.innerText.replace(/\\s+/g, ' ');
@@ -68,8 +88,11 @@ const EXTRACT = `(() => {
     ogTitle: meta('meta[property="og:title"]'),
     brand: (p.brand && (p.brand.name || p.brand)) || null,
     ogImage: meta('meta[property="og:image"]'),
+    ldPrice: offers ? (offers.price ?? offers.lowPrice ?? null) : null,
+    ldCurrency: offers ? (offers.priceCurrency ?? null) : null,
     ldRating: agg.ratingValue || null,
     variants: uniqVariants.slice(0, 10),
+    priceByPosition,
     avalRaw: avalMatch ? avalMatch[0] : null,
     specs,
   };
