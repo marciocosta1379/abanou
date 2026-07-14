@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 const { animal, posts } = Astro.props;
 
 function formatDate(date: Date) {
-  return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+  return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' });
 }
 ---
 
