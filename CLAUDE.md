@@ -109,7 +109,7 @@ products:
 - **Não exibir preço fixo da Amazon** (regra da Amazon — só com PA-API). Para **Petz**, pode exibir preço: inclua `price` nos produtos + `priceCheckedAt: 'DD/MM/AAAA'` no frontmatter (a tabela mostra a data e some a coluna de preço quando não há). Use o **preço normal** (não o de assinante).
 - Botões **"Ver na Petz"** abrem automaticamente um **modal lembrando o cupom `ABANOU`** (componente global `CouponModal`).
 - Saúde animal: tom informativo, não prescritivo; reforçar "consulte um veterinário".
-- Títulos ≤ 70 caracteres; descrições meta ≤ 160.
+- Títulos entre 40-70 caracteres; descrições meta entre 120-160 caracteres. (Não só o máximo — o Bing Webmaster Tools sinaliza título/descrição **curtos demais** como erro de SEO moderado; evitar títulos telegráficos e descrições genéricas de uma linha.)
 - Posts saem com `draft: true` por padrão.
 - **Imagem de capa:** a foto do **1º produto** da lista vira a capa do post nos cards (home/categorias/`/para/`). **Coloque o produto principal/recomendado em primeiro.** Páginas sem produto usam `public/og-default.png` (logo).
 - **Preview de redes sociais/WhatsApp (`og:image`):** é um **cartão social 1200×630 em JPG** (foto do 1º produto + título + marca), gerado por `scripts/make-og-images.mjs` em `public/images/og/<slug>.jpg`. Roda automático no `npm run deploy` (avulso: `npm run og`). **Nunca usar WebP na og:image** — o WhatsApp não renderiza preview WebP. O gerador **pula cartões já existentes** (preserva os renderizados com Arial no Windows, já que o CI Linux não tem Arial). Ao **criar** um post, `npm run og` gera o cartão que falta; ao **reordenar** os produtos de um post, rode `npm run og -- --force` (ou apague o JPG antigo).
