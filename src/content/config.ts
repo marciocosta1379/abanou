@@ -42,6 +42,7 @@ const posts = defineCollection({
         'brinquedos',
         'plano-de-saude',
         'saude-cuidados',
+        'aquarismo',
         'guias',
       ]),
       tags: z.array(z.string()).default([]),

@@ -1,22 +1,26 @@
 ---
 name: lote-semanal
-description: Gera os posts da semana (seg–sex) para o Abanou (reviews de produtos para cães e gatos). Use quando o usuário digitar /lote-semanal, pedir "gerar a semana" ou "criar os posts da semana". Mix editorial 60/20/20.
+description: Gera os posts da semana (7 dias, seg–dom) para o Abanou (reviews de produtos para cães, gatos e — desde 21/07/2026 — aquarismo). Use quando o usuário digitar /lote-semanal, pedir "gerar a semana" ou "criar os posts da semana". Mix editorial 60/20/20 nos dias úteis + fim de semana.
 ---
 
 # Skill: Lote Semanal de Posts — Abanou
 
-Site de reviews de produtos para **cães e gatos**. Reviews/comparativos honestos, com o selo
-editorial **✅ Abanou** marcando o que aprovamos.
+Site de reviews de produtos para **cães, gatos** e (desde 21/07/2026) **aquarismo**. Reviews/comparativos
+honestos, com o selo editorial **✅ Abanou** marcando o que aprovamos.
 
 ## Quando usar
-Quando o usuário pedir os 5 posts da semana (seg–sex) em lote. Se não passar temas, sugira 5.
+Quando o usuário pedir os 7 posts da semana (seg–dom — cadência diária desde 21/07/2026, antes
+era só seg-sex) em lote. Se não passar temas, sugira 7.
 
-## Estratégia editorial (60/20/20)
+## Estratégia editorial
 - **3 listicles** (Top N) — seg, qua, sex — tráfego
 - **1 comparativo** (X vs Y) — ter — conversão
 - **1 review individual** — qui — autoridade
+- **2 posts de fim de semana** (sáb, dom) — tipo/tema flexível; já usado para abrir a categoria
+  **aquarismo** (peixes) numa semana pontual — confirme com o usuário se ele quer manter foco em
+  aquarismo nos finais de semana ou variar.
 
-## Passo 0 — Confirmar (tabela: datas seg–sex, temas, tipos). Só prossiga após o "ok".
+## Passo 0 — Confirmar (tabela: datas seg–dom, temas, tipos). Só prossiga após o "ok".
 
 ## Passo 1 — Coletar produtos + links de afiliado
 

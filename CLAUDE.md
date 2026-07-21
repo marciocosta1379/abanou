@@ -52,7 +52,9 @@ Copie o modelo desejado para `src/content/posts/<slug>.mdx` e preencha os `[PLAC
 
 ## Categorias válidas
 
-`racao` | `petiscos` | `alimentadores` | `tecnologia-pet` | `passeio` | `conforto` | `higiene` | `brinquedos` | `plano-de-saude` | `saude-cuidados` | `guias`
+`racao` | `petiscos` | `alimentadores` | `tecnologia-pet` | `passeio` | `conforto` | `higiene` | `brinquedos` | `plano-de-saude` | `saude-cuidados` | `aquarismo` | `guias`
+
+⚠️ `aquarismo` foi criada em 21/07/2026 para conteúdo de **produtos/equipamento de aquário** (filtro, aquecedor, kit completo etc.) — segue a mesma lógica das outras categorias (tipo de produto), combinada com a tag `peixes` do eixo animal. Não confundir com regra "não criar categoria por animal": essa categoria é sobre o PRODUTO (aquarismo/equipamento), o animal continua sendo a tag `peixes`.
 
 ## Eixo "animal" via TAGS (não é categoria)
 
@@ -112,12 +114,13 @@ products:
 - **Imagem de capa:** a foto do **1º produto** da lista vira a capa do post nos cards (home/categorias/`/para/`). **Coloque o produto principal/recomendado em primeiro.** Páginas sem produto usam `public/og-default.png` (logo).
 - **Preview de redes sociais/WhatsApp (`og:image`):** é um **cartão social 1200×630 em JPG** (foto do 1º produto + título + marca), gerado por `scripts/make-og-images.mjs` em `public/images/og/<slug>.jpg`. Roda automático no `npm run deploy` (avulso: `npm run og`). **Nunca usar WebP na og:image** — o WhatsApp não renderiza preview WebP. O gerador **pula cartões já existentes** (preserva os renderizados com Arial no Windows, já que o CI Linux não tem Arial). Ao **criar** um post, `npm run og` gera o cartão que falta; ao **reordenar** os produtos de um post, rode `npm run og -- --force` (ou apague o JPG antigo).
 
-## Estratégia de conteúdo (mix 60/20/20)
+## Estratégia de conteúdo
 
-5 posts/semana (seg-sex), via skill `/lote-semanal`:
-- **60% Listicles "Top N"** (seg, qua, sex)
-- **20% Comparativos "X vs Y"** (ter)
-- **20% Reviews individuais** (qui)
+7 posts/semana (seg-dom — cadência diária desde 21/07/2026, antes era só seg-sex), via skill `/lote-semanal`:
+- **Listicles "Top N"** (seg, qua, sex)
+- **Comparativo "X vs Y"** (ter)
+- **Review individual** (qui)
+- **2 posts de fim de semana** (sáb, dom) — tipo/tema flexível, confirmar caso a caso
 
 ### Fontes confiáveis para pesquisa
 - Veterinários / portais com revisão veterinária

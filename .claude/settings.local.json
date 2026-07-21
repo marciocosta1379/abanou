@@ -8,7 +8,12 @@
       "WebFetch(domain:afilialink.com.br)",
       "mcp__Claude_in_Chrome__find",
       "mcp__Claude_in_Chrome__computer",
-      "mcp__Claude_in_Chrome__get_page_text"
+      "mcp__Claude_in_Chrome__get_page_text",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "mcp__Claude_in_Chrome__navigate",
+      "mcp__Claude_in_Chrome__javascript_tool",
+      "Bash(node scripts/petz-cdp.mjs https://www.petz.com.br/produto/petisco-natural-pet-saudavel-filezinho-de-frango-desidratado-70g https://www.petz.com.br/produto/osso-mastig-super-premium-orelha-bovina-para-caes-3-unidades https://www.petz.com.br/produto/orelha-de-boi-desidratada-para-cachorro-petisco-biodog https://www.petz.com.br/produto/snack-petiscao-bifinho-palito-carne-para-caes-60g)",
+      "Bash(node -e \"let d='';process.stdin.on\\('data',c=>d+=c\\).on\\('end',\\(\\)=>{JSON.parse\\(d\\).forEach\\(x=>console.log\\(JSON.stringify\\({name:x.name,img:x.ogImage,aval:x.avalRaw,main:x.variants[0]}\\)\\)\\)}\\)\")"
     ]
   }
 }
