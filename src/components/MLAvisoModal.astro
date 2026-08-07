@@ -1,0 +1,93 @@
+---
+// Modal global que aparece ao clicar em qualquer botão "Ver no Mercado Livre" (.js-ml-link).
+// Avisa que, no Mercado Livre, o recomendante aparece como "Rede Caseira" — a mesma rede/dono —
+// para o visitante não estranhar o nome/imagem ao chegar na loja.
+// A imagem do perfil (/images/ml-perfil.png) é opcional; se faltar, o bloco some.
+---
+
+<div id="ml-aviso-modal" class="ml-modal" hidden>
+  <div class="ml-modal__backdrop" data-close></div>
+  <div class="ml-modal__box" role="dialog" aria-modal="true" aria-labelledby="ml-modal-title">
+    <button class="ml-modal__x" data-close aria-label="Fechar">×</button>
+    <div class="ml-modal__emoji">🛒</div>
+    <h3 id="ml-modal-title">Um aviso rápido antes de ir</h3>
+    <div class="ml-modal__perfil">
+      <img
+        src="/images/ml-perfil.png"
+        alt="Perfil Rede Caseira no Mercado Livre"
+        width="48"
+        height="48"
+        loading="lazy"
+        onerror="this.style.display='none'"
+      />
+      <span><strong>Rede Caseira</strong></span>
+    </div>
+    <p>No Mercado Livre, nossa recomendação aparece com o nome <strong>Rede Caseira</strong> —
+      é a mesma rede de sites, do mesmo autor do Abanou. Pode comprar tranquilo. 👍</p>
+    <button class="btn btn--primary ml-modal__go" id="ml-go" type="button">Continuar para o Mercado Livre</button>
+    <button class="ml-modal__skip" id="ml-close" type="button">Cancelar</button>
+  </div>
+</div>
+
+<style>
+  .ml-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+  .ml-modal[hidden] { display: none; }
+  .ml-modal__backdrop { position: absolute; inset: 0; background: rgba(16,27,46,0.55); backdrop-filter: blur(2px); }
+  .ml-modal__box {
+    position: relative;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.75rem 1.5rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    animation: mlIn 0.18s ease-out;
+  }
+  @keyframes mlIn { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: none; } }
+  .ml-modal__x { position: absolute; top: 0.6rem; right: 0.8rem; background: none; border: none; font-size: 1.6rem; line-height: 1; color: var(--color-text-muted); cursor: pointer; }
+  .ml-modal__emoji { font-size: 2.4rem; }
+  .ml-modal__box h3 { margin: 0.4rem 0 0.6rem; color: var(--color-dark); }
+  .ml-modal__box p { color: var(--color-text-soft); font-size: 0.92rem; line-height: 1.6; margin: 0 0 1rem; }
+  .ml-modal__perfil {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.4rem 1rem 0.4rem 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .ml-modal__perfil img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+  .ml-modal__perfil span { font-size: 0.95rem; color: var(--color-dark); }
+  .ml-modal__go { width: 100%; justify-content: center; }
+  .ml-modal__skip { display: block; width: 100%; margin-top: 0.6rem; background: none; border: none; color: var(--color-text-muted); font-size: 0.85rem; cursor: pointer; text-decoration: underline; }
+</style>
+
+<script>
+  const modal = document.getElementById('ml-aviso-modal');
+  if (modal) {
+    let targetHref: string | null = null;
+    const open = (href: string) => {
+      targetHref = href;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    };
+    const close = () => { modal.hidden = true; document.body.style.overflow = ''; };
+
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const a = target.closest('a.js-ml-link') as HTMLAnchorElement | null;
+      if (a) { e.preventDefault(); open(a.href); return; }
+      if (target.closest('[data-close]')) close();
+    });
+
+    document.getElementById('ml-go')?.addEventListener('click', () => {
+      if (targetHref) window.open(targetHref, '_blank', 'noopener');
+      close();
+    });
+    document.getElementById('ml-close')?.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });
+  }
+</script>

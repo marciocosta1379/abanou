@@ -1,5 +1,5 @@
 ---
-type Store = 'amazon' | 'petz' | 'petlove' | 'hotmart';
+type Store = 'amazon' | 'petz' | 'petlove' | 'hotmart' | 'mercadolivre';
 
 interface Props {
   href: string;
@@ -14,6 +14,7 @@ const STORE_META: Record<Store, { label: string; class: string }> = {
   petz: { label: 'Ver na Petz', class: 'affiliate-btn--petz' },
   petlove: { label: 'Conhecer plano PetLove', class: 'affiliate-btn--petlove' },
   hotmart: { label: 'Conhecer o curso', class: 'affiliate-btn--hotmart' },
+  mercadolivre: { label: 'Ver no Mercado Livre', class: 'affiliate-btn--mercadolivre' },
 };
 
 const { href, store = 'amazon', label, source = 'review', block = false } = Astro.props;
@@ -43,7 +44,7 @@ const finalUrl = withTracking(href, source);
 ---
 
 <a
-  class:list={['affiliate-btn', meta.class, { 'affiliate-btn--block': block, 'js-petz-link': store === 'petz' }]}
+  class:list={['affiliate-btn', meta.class, { 'affiliate-btn--block': block, 'js-petz-link': store === 'petz', 'js-ml-link': store === 'mercadolivre' }]}
   href={finalUrl}
   target="_blank"
   rel="sponsored nofollow noopener noreferrer"

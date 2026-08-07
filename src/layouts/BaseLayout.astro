@@ -3,6 +3,7 @@ import { SITE } from '../config/site';
 import '../styles/global.css';
 import CookieBanner from '../components/CookieBanner.astro';
 import CouponModal from '../components/CouponModal.astro';
+import MLAvisoModal from '../components/MLAvisoModal.astro';
 
 interface Props {
   title?: string;
@@ -212,5 +213,6 @@ const websiteSchema = {
     </footer>
     <CookieBanner />
     <CouponModal />
+    <MLAvisoModal />
   </body>
 </html>
