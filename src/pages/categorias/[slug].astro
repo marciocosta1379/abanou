@@ -18,12 +18,67 @@ export async function getStaticPaths() {
     guias: 'Guias de Compra',
   };
 
+  // Título e meta descrição próprios por categoria. O padrão anterior
+  // (`${label} — Reviews e Guias`) gerava títulos de 25 a 35 caracteres, que o
+  // Bing Webmaster Tools sinaliza como curtos demais.
+  const categorySeo: Record<string, { title: string; description: string }> = {
+    racao: {
+      title: 'Ração para cães e gatos: comparativos e como escolher',
+      description: 'Comparamos rações secas, úmidas e por fase de vida: o que muda entre econômica, premium e super premium, e como escolher a certa para o seu pet.',
+    },
+    petiscos: {
+      title: 'Petiscos para cães e gatos: quais valem e quanto oferecer',
+      description: 'Petiscos naturais, cremosos, dentais e bifinhos comparados: o que cada tipo entrega, quanto dar por dia e quando o petisco atrapalha a dieta do pet.',
+    },
+    alimentadores: {
+      title: 'Comedouros e bebedouros: automáticos, lentos e fontes',
+      description: 'Comedouro automático, comedouro lento, bebedouro e fonte de água comparados: o que cada formato resolve e qual combina com a rotina da sua casa.',
+    },
+    'tecnologia-pet': {
+      title: 'Tecnologia pet: câmeras, rastreadores GPS e automação',
+      description: 'Câmeras para monitorar o pet, rastreadores GPS e alimentadores conectados: o que a tecnologia resolve de verdade na rotina de quem tem cão ou gato.',
+    },
+    passeio: {
+      title: 'Passeio com cães: coleiras, peitorais e transporte',
+      description: 'Coleira ou peitoral, guias, focinheiras e caixas de transporte comparadas: o que é mais seguro em cada porte e como escolher sem machucar o cão.',
+    },
+    conforto: {
+      title: 'Conforto e descanso: camas, casinhas e tapetes térmicos',
+      description: 'Camas comuns e ortopédicas, casinhas, cobertores e tapetes térmicos comparados: o que muda por porte, por idade e pelo clima da sua região.',
+    },
+    higiene: {
+      title: 'Higiene de cães e gatos: banho, tosa e caixa de areia',
+      description: 'Shampoos, escovas, banho a seco, cortadores de unha, tapetes higiênicos e areia para gatos: o que funciona em cada rotina de higiene do pet.',
+    },
+    brinquedos: {
+      title: 'Brinquedos para cães e gatos que realmente entretêm',
+      description: 'Brinquedos interativos, de enriquecimento ambiental e de mordida comparados: quais seguram a atenção do pet e quais viram pedaço solto pela casa.',
+    },
+    'plano-de-saude': {
+      title: 'Plano de saúde para pets: cobertura e quando compensa',
+      description: 'Como funcionam os planos de saúde para cães e gatos, o que costuma ficar fora da cobertura e em que situação a mensalidade realmente se paga.',
+    },
+    'saude-cuidados': {
+      title: 'Saúde e cuidados: antipulgas, vermífugos e prevenção',
+      description: 'Antipulgas, vermífugos, suplementos, primeiros socorros e prevenção de doenças: o que o tutor resolve em casa e o que é sempre do veterinário.',
+    },
+    aquarismo: {
+      title: 'Aquarismo: montagem, filtragem e cuidado com a água',
+      description: 'Ciclagem, filtros, iluminação, substrato, teste de água e alimentação: o caminho para manter um aquário estável, em água doce ou marinha.',
+    },
+    guias: {
+      title: 'Guias de compra para quem tem cão, gato ou aquário',
+      description: 'Guias completos de alimentação, higiene, saúde e aquarismo: explicações sem enrolação para decidir a compra com informação, e não com palpite.',
+    },
+  };
+
   const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 
   return Object.keys(categoryLabels).map((slug) => ({
     params: { slug },
     props: {
       label: categoryLabels[slug],
+      seo: categorySeo[slug],
       posts: allPosts
         .filter((p) => p.data.category === slug)
         .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()),
@@ -32,7 +87,7 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const { label, posts } = Astro.props;
+const { label, seo, posts } = Astro.props;
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric', timeZone: 'UTC' });
@@ -40,8 +95,8 @@ function formatDate(date: Date) {
 ---
 
 <BaseLayout
-  title={`${label} — Reviews e Guias`}
-  description={`Reviews honestos, comparativos e guias de compra sobre ${label.toLowerCase()} para cães e gatos.`}
+  title={seo?.title ?? `${label} — Reviews e Guias`}
+  description={seo?.description ?? `Reviews honestos, comparativos e guias de compra sobre ${label.toLowerCase()} para cães e gatos.`}
 >
   <div class="container section">
     <nav class="cat-breadcrumb" aria-label="Navegação por categoria">
