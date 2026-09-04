@@ -109,6 +109,23 @@ products:
 - **Não exibir preço fixo da Amazon** (regra da Amazon — só com PA-API). Para **Petz**, pode exibir preço: inclua `price` nos produtos + `priceCheckedAt: 'DD/MM/AAAA'` no frontmatter (a tabela mostra a data e some a coluna de preço quando não há). Use o **preço normal** (não o de assinante).
 - Botões **"Ver na Petz"** abrem automaticamente um **modal lembrando o cupom `ABANOU`** (componente global `CouponModal`).
 - Saúde animal: tom informativo, não prescritivo; reforçar "consulte um veterinário".
+- **Aquarismo (trilha 18h) — protocolo de fontes.** Aqui o erro mata animal do leitor:
+  parâmetro de água errado, ciclagem mal explicada ou espécie incompatível no mesmo
+  aquário. O autor **não mantém os aquários descritos**, então:
+  - **Dado de espécie só de base de referência** — FishBase, Seriously Fish, Aqua-Fish ou
+    ficha de criadouro/importador sério. Nunca deduzir porte adulto, pH, temperatura,
+    dureza (GH/KH) ou litragem mínima por analogia com espécie parecida.
+  - **Compatibilidade sempre conferida nos dois sentidos** — "A convive com B" precisa
+    valer para os dois, e considerando porte adulto, territorialidade e faixa de água
+    ocupada. Na dúvida, dizer que não é seguro.
+  - **Ciclagem e química nunca resumidas.** Ciclo do nitrogênio, tempo de maturação e
+    faixas de amônia/nitrito/nitrato saem com número e fonte — é o erro nº 1 de iniciante
+    e o que mais mata peixe.
+  - **Sem primeira pessoa fingida.** Proibido "meu aquário", "criei esse cardume",
+    "usei esse filtro". Descrever e citar a fonte.
+  - **Litragem e equipamento conferidos** contra a especificação do fabricante, não contra
+    o "senso comum" de fórum.
+  - Manter o tom informativo e não prescritivo, como já vale para saúde animal.
 - Títulos entre 40-70 caracteres; descrições meta entre 120-160 caracteres. (Não só o máximo — o Bing Webmaster Tools sinaliza título/descrição **curtos demais** como erro de SEO moderado; evitar títulos telegráficos e descrições genéricas de uma linha.)
 - Posts saem com `draft: true` por padrão.
 - **Imagem de capa:** a foto do **1º produto** da lista vira a capa do post nos cards (home/categorias/`/para/`). **Coloque o produto principal/recomendado em primeiro.** Páginas sem produto usam `public/og-default.png` (logo).
@@ -116,11 +133,34 @@ products:
 
 ## Estratégia de conteúdo
 
-7 posts/semana (seg-dom — cadência diária desde 21/07/2026, antes era só seg-sex), via skill `/lote-semanal`:
+**10 posts/semana** desde 04/09/2026 — 7 na trilha da manhã (seg-dom) + 3 na trilha da tarde
+(ver *Cadência* logo abaixo). Antes eram 7/semana, e antes disso só seg-sex. Via skill
+`/lote-semanal`. Tipos da trilha da manhã:
 - **Listicles "Top N"** (seg, qua, sex)
 - **Comparativo "X vs Y"** (ter)
 - **Review individual** (qui)
 - **2 posts de fim de semana** (sáb, dom) — tipo/tema flexível, confirmar caso a caso
+
+
+### Cadência: 10 posts/semana em duas trilhas (desde 04/09/2026)
+
+| Trilha | Horário | Tema | `pubDate` |
+|---|---|---|---|
+| **Manhã** — 7/semana (todo dia) | 07:00 BRT | cães e gatos | só a data: `pubDate: 2026-09-16` |
+| **Tarde** — 3/semana (**ter, qui, sáb**) | 18:00 BRT | **aquarismo** (ver protocolo nas regras editoriais) | **com hora**: `pubDate: 2026-09-16T18:00:00-03:00` |
+
+⚠️ **A hora no `pubDate` do post da tarde é obrigatória.** Sem ela o post vale como
+meia-noite e a rodada das 07:00 publica os dois juntos, no mesmo horário. Verificado:
+`publish-scheduled.mjs` compara timestamp completo (`pubDate > now`), o YAML converte
+`2026-09-16T18:00:00-03:00` em `Date` e o `z.date()` do schema aceita — não precisa
+mudar script nem schema.
+
+**Nunca pôr dois posts do mesmo pilar no mesmo dia** — é o que faz os dois competirem
+pela mesma busca e dividirem a força entre si. A separação de tema entre as trilhas
+existe exatamente para isso.
+
+O disparo das 18h vem do **n8n** (regra cron `0 5 18 * * *`, fuso America/Sao_Paulo,
+18:05 para dar folga contra atraso de relógio). Ver [[cadencia-10-por-semana-rede]].
 
 ### Fontes confiáveis para pesquisa
 - Veterinários / portais com revisão veterinária
@@ -128,6 +168,9 @@ products:
 - Reclame Aqui (problemas reais)
 - YouTube (comportamento, adestramento, review de produtos pet)
 - Sites oficiais das marcas de gadgets
+- **Aquarismo:** FishBase e Seriously Fish (ficha de espécie), fabricantes de equipamento
+  e testes (Sera, JBL, Tetra, Prodac), fóruns e comunidades de aquarismo BR para gotcha
+  real — mas **dado numérico sempre da base de referência, não do fórum**
 
 **Regra de ouro**: nunca invente specs/composição. Confirme em ≥2 fontes.
 
