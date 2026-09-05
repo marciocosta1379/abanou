@@ -11,10 +11,11 @@ Domínio: `abanou.com.br`
 - **Petz (Parceiro Petz)**: ração/alimentação. Modelo de **cupom**. Cupom/código de convite: **`ABANOU`**. Loja de parceiro: `https://www.petz.com.br/parceiro/abanou`. Nos posts, linkar o produto na Petz **e** exibir o cupom `ABANOU` (a comissão é creditada quando o cupom é usado no checkout).
 - **PetLove Saúde**: plano de saúde pet (recorrência). Usado via componente `<PlanCallout>`.
 
-### Roteamento de loja
-- Ração/petiscos/consumíveis → **Petz**
-- Gadgets/duráveis → **Amazon**
-- Plano de saúde → **PetLove**
+### Roteamento de loja (refinado em 04/09/2026)
+- **Medicação e alimentação de cão e gato** (ração, petisco, antipulgas, remédio) → **Petz**
+- **Todo o resto** — duráveis, acessórios, higiene, equipamento e **aquarismo inteiro** → **Amazon**
+- Plano de saúde → **PetLove** · Cursos → **Hotmart**
+- **Mercado Livre é exceção**, só quando o produto certo não existe na Amazon.
 
 ### Compromisso social
 **10% de tudo que o site arrecada é doado para o [Gatil Irmã Francisca](https://gatilirmafrancisca.org.br/)** (resgate de gatos). Mencionado no rodapé (todas as páginas) e na página Sobre. Manter essa mensagem em novos conteúdos quando fizer sentido.
@@ -124,12 +125,36 @@ products:
   - **Sem primeira pessoa fingida.** Proibido "meu aquário", "criei esse cardume",
     "usei esse filtro". Descrever e citar a fonte.
   - **Litragem e equipamento conferidos** contra a especificação do fabricante, não contra
-    o "senso comum" de fórum.
+    o "senso comum" de fórum. Aquecedor pela regra de **1 a 2 W por litro**.
+  - **Cruze a fonte internacional com a referência praticada no Brasil.** O Seriously Fish dá
+    ~41 L de mínimo para betta; a referência brasileira é **10 L**. O post correto apresenta a
+    **faixa** (mínimo praticado → ideal), não um número estrangeiro como se fosse o padrão local.
   - Manter o tom informativo e não prescritivo, como já vale para saúde animal.
 - Títulos entre 40-70 caracteres; descrições meta entre 120-160 caracteres. (Não só o máximo — o Bing Webmaster Tools sinaliza título/descrição **curtos demais** como erro de SEO moderado; evitar títulos telegráficos e descrições genéricas de uma linha.)
 - Posts saem com `draft: true` por padrão.
 - **Imagem de capa:** a foto do **1º produto** da lista vira a capa do post nos cards (home/categorias/`/para/`). **Coloque o produto principal/recomendado em primeiro.** Páginas sem produto usam `public/og-default.png` (logo).
 - **Preview de redes sociais/WhatsApp (`og:image`):** é um **cartão social 1200×630 em JPG** (foto do 1º produto + título + marca), gerado por `scripts/make-og-images.mjs` em `public/images/og/<slug>.jpg`. Roda automático no `npm run deploy` (avulso: `npm run og`). **Nunca usar WebP na og:image** — o WhatsApp não renderiza preview WebP. O gerador **pula cartões já existentes** (preserva os renderizados com Arial no Windows, já que o CI Linux não tem Arial). Ao **criar** um post, `npm run og` gera o cartão que falta; ao **reordenar** os produtos de um post, rode `npm run og -- --force` (ou apague o JPG antigo).
+- **Imagem no corpo — onde o produto é citado.** A foto entra junto do argumento que justifica o
+  produto, não num bloco fixo. **Não** use o padrão rígido `## N. Produto` + imagem em todo produto:
+  fica monótono e previsível. Nem todo produto precisa de seção numerada — só quando o texto
+  comporta. Mas **todo produto citado no corpo leva a imagem ali**, não só no card do rodapé.
+- **Produto ↔ texto: as duas metades da mesma regra.**
+  - **Citou como necessário, tem que vender.** Se o texto afirma que algo é preciso ter, o item
+    entra na lista de produtos com botão de compra.
+  - **O que a tese rejeita, sai da lista.** Se o post argumenta contra um item, ele não pode
+    aparecer no frontmatter, na tabela comparativa nem no corpo — varra os **três** lugares.
+  - **Dimensionamento tem de fechar com o resto do post** (potência, litragem, medida citada).
+- **Verificação de estoque é obrigatória antes de apresentar o lote.** Produto esgotado queima o
+  clique. Cheque cada um: `curl -s -A "Mozilla/5.0" "https://www.amazon.com.br/dp/SEU_ASIN" | grep -o 'id="availability".\{0,120\}'`
+  — compra possível = disponibilidade positiva **e** `id="add-to-cart-button"` presente. Caso
+  ambíguo, confirme no Browser pane. Sem estoque → trocar o produto e apagar a imagem órfã.
+- **Imagem de referência não-produto** (espécie, planta, diagrama, esquema): use o **Wikimedia
+  Commons** (a API exige header `User-Agent`), **confira a licença**, **confirme que é o objeto
+  certo** e **credite no post**. Diagrama próprio: SVG inline com `@media (prefers-color-scheme: dark)`.
+- **Endosso pessoal só com autorização explícita do usuário.** "Indicação do Abanou", "o que usamos
+  aqui" e afins descrevem a experiência dele, não a do agente — nunca escreva por conta própria.
+- **Revisão:** ao terminar cada post, entregue o link `http://localhost:4321/posts/<slug>/`. O
+  usuário revisa no navegador, artigo por artigo.
 
 ## Estratégia de conteúdo
 
