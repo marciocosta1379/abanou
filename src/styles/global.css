@@ -889,6 +889,17 @@ li { margin-bottom: 0.4em; }
   color: inherit;
 }
 .prose img { border-radius: var(--radius-md); margin: 1.5em auto; }
+/* Credito de imagem de referencia (Wikimedia Commons). Cola na imagem acima. */
+.prose img + .credito-imagem,
+.prose .credito-imagem {
+  margin: -1em 0 1.75em;
+  text-align: center;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+.prose .credito-imagem a { color: var(--color-text-soft); text-decoration: underline; }
+.prose .credito-imagem a:hover { color: var(--color-orange); }
 .prose hr { border: none; border-top: 2px solid var(--color-border-light); margin: 2.5em 0; }
 .prose a:not(.affiliate-btn) { color: var(--color-orange); }
 .prose a:not(.affiliate-btn):hover { color: var(--color-orange-hover); }
