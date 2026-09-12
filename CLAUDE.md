@@ -148,9 +148,26 @@ products:
   clique. Cheque cada um: `curl -s -A "Mozilla/5.0" "https://www.amazon.com.br/dp/SEU_ASIN" | grep -o 'id="availability".\{0,120\}'`
   — compra possível = disponibilidade positiva **e** `id="add-to-cart-button"` presente. Caso
   ambíguo, confirme no Browser pane. Sem estoque → trocar o produto e apagar a imagem órfã.
-- **Imagem de referência não-produto** (espécie, planta, diagrama, esquema): use o **Wikimedia
-  Commons** (a API exige header `User-Agent`), **confira a licença**, **confirme que é o objeto
-  certo** e **credite no post**. Diagrama próprio: SVG inline com `@media (prefers-color-scheme: dark)`.
+- **Imagem de referência não-produto — padrão no Abanou, não exceção.** Sempre que a imagem
+  ilustrar melhor o artigo (ilustração mais completa) **e/ou** quando as fotos de produto não
+  bastarem, busque a imagem no **Wikimedia Commons**. Decisão do usuário em 11/09/2026.
+  - **Quando entra:** o texto nomeia uma **espécie, raça, planta ou estrutura anatômica** que
+    nenhuma foto de produto mostra (o betta, a corydora, a anúbia, o focinho braquicefálico); a
+    diferença que o texto descreve é **visual** e o leitor precisa vê-la para entender; ou o post
+    vende equipamento, mas o argumento é sobre o **animal**, não sobre o aparelho.
+  - **Quando não entra:** o produto já é o assunto (ventilador, filtro, comedouro) e a foto do
+    anúncio mostra o que o texto discute. Imagem decorativa não entra — cada uma tem que sustentar
+    um argumento que já está no texto.
+  - **Obrigatório em toda imagem do Commons:** a API exige header `User-Agent`; **confira a
+    licença** (domínio público, CC0 ou CC BY-SA servem — CC BY-NC e "fair use" **não**);
+    **confirme visualmente que é a espécie/objeto certo** — nome de arquivo não é prova; e
+    **credite logo abaixo da imagem**, no padrão já usado nos posts:
+    `<p class="credito-imagem"><small>Assunto — foto de AUTOR, LICENÇA, via Wikimedia Commons.</small></p>`
+    (licença com link quando for CC; domínio público vai sem link).
+  - Guardar em `public/images/plantas/` ou `public/images/referencia/`, **nunca** em
+    `produtos/` — senão a varredura de imagem órfã do lote acusa falso positivo.
+  - **Nunca vira `og:image`.** O cartão social é sempre a foto do 1º produto.
+  - Diagrama próprio: SVG inline com `@media (prefers-color-scheme: dark)`.
 - **Endosso pessoal só com autorização explícita do usuário.** "Indicação do Abanou", "o que usamos
   aqui" e afins descrevem a experiência dele, não a do agente — nunca escreva por conta própria.
 - **Revisão:** ao terminar cada post, entregue o link `http://localhost:4321/posts/<slug>/`. O

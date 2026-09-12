@@ -114,11 +114,21 @@ JSON `[{id,name,brand,rating,image,stores:[{store:'amazon'|'petz'|'petlove'|'hot
   Varredura de MD5 pega foto trocada.
 - O script **não sobrescreve arquivo existente**: se o `id` repetir, apague o `.webp` antes.
 - Confira tamanhos: **< 2KB = imagem quebrada → remova**.
-- **Foto de espécie / planta / referência:** use **Wikimedia Commons** (a API exige header
-  `User-Agent`), **cheque a licença** (domínio público ou CC) e **credite no post**
-  (`<p class="credito-imagem">`). ⚠️ **Confirme que é a espécie certa** — a busca por "Java moss"
-  no Commons devolve *Fontinalis* (musgo-salgueiro), que é outra planta. Guarde em
-  `public/images/plantas/`.
+- **Foto de espécie / planta / referência — padrão no Abanou desde 11/09/2026.** Decisão do
+  usuário: a imagem do **Wikimedia Commons** entra **sempre que ilustrar melhor o artigo e/ou
+  quando as fotos de produto não bastarem**. Não é recurso excepcional — é parte do fechamento
+  de todo post cujo argumento é sobre o **animal ou a planta**, não sobre o aparelho.
+  - **Passe os posts do lote nesse filtro antes de fechar:** o texto nomeia espécie, raça, planta
+    ou estrutura anatômica que nenhuma foto de produto mostra? A diferença que o texto descreve é
+    visual? Se sim, busque no Commons. Se o produto já é o assunto e a foto do anúncio mostra o
+    que o texto discute, não force.
+  - **Obrigatório:** a API exige header `User-Agent`; **cheque a licença** (domínio público, CC0
+    ou CC BY-SA servem — CC BY-NC e "fair use" **não**); **confirme visualmente que é a espécie
+    certa** (⚠️ a busca por "Java moss" no Commons devolve *Fontinalis*, musgo-salgueiro, que é
+    outra planta — nome de arquivo não é prova); e **credite logo abaixo da imagem**:
+    `<p class="credito-imagem"><small>Assunto — foto de AUTOR, LICENÇA, via Wikimedia Commons.</small></p>`
+  - Guarde em `public/images/plantas/` ou `public/images/referencia/` — **nunca** em `produtos/`,
+    senão a varredura de imagem órfã acusa falso positivo. **Nunca vira `og:image`.**
 
 #### 3.4 — Scaffold + frontmatter
 
