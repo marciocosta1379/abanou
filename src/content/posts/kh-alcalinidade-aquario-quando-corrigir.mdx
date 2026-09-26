@@ -1,0 +1,242 @@
+---
+title: 'KH e alcalinidade no aquário: quando corrigir e com o quê'
+description: 'O que é KH, por que ele segura o pH e quando o aquário de água doce precisa de correção. Como medir, com o que subir e o erro de mexer rápido demais.'
+pubDate: 2026-09-29T18:00:00-03:00
+category: 'aquarismo'
+tags: ['aquarismo', 'kh', 'alcalinidade', 'ph', 'qualidade-da-agua', 'agua-doce']
+featured: false
+draft: true
+author: 'Márcio Costa'
+products:
+  - name: 'API Kit de teste GH e KH para aquário de água doce'
+    brand: 'API'
+    rating: 4.6
+    stores:
+      - store: 'amazon'
+        url: 'https://www.amazon.com.br/dp/B003SNCHMA?tag=abanou-20'
+    image: '/images/produtos/api-teste-gh-kh.webp'
+    pros:
+      - '5,6 mil avaliações: o teste de dureza mais avaliado da Amazon'
+      - 'Mede GH e KH em separado, com reagentes líquidos'
+      - 'Leitura por contagem de gotas, sem depender de comparar cor'
+    cons:
+      - 'Só para água doce'
+  - name: 'Seachem Alkaline Buffer 70 g, tamponador sem fosfato'
+    brand: 'Seachem'
+    rating: 4.7
+    stores:
+      - store: 'amazon'
+        url: 'https://www.amazon.com.br/dp/B0002A5VYI?tag=abanou-20'
+    image: '/images/produtos/seachem-alkaline-buffer-70g.webp'
+    pros:
+      - 'Dose declarada: 6 g para 80 L sobem o KH em cerca de 2,8 dKH'
+      - 'Sem fosfato, o que evita alimentar algas'
+      - 'Tampona o pH entre 7,2 e 8,5, segundo a Seachem'
+    cons:
+      - 'Estoque baixo no momento da consulta'
+      - 'Não é para quem quer pH ácido: para isso existe o Acid Buffer'
+faq:
+  - question: 'Qual a diferença entre KH, GH e pH?'
+    answer: 'O pH mede se a água está ácida ou alcalina. O KH, dureza carbonatada ou alcalinidade, mede a quantidade de carbonatos e bicarbonatos, que funcionam como um amortecedor e impedem o pH de mudar rápido. O GH, dureza geral, mede cálcio e magnésio dissolvidos, que importam para a fisiologia dos peixes e das plantas. Os três se relacionam, mas são medidas diferentes: dá para ter pH neutro com KH baixo, por exemplo, e aí o pH fica instável.'
+  - question: 'Por que o pH do meu aquário cai sozinho?'
+    answer: 'O caso mais comum é KH baixo. As bactérias do filtro que transformam amônia em nitrato consomem alcalinidade nesse processo, e a respiração dos peixes e a decomposição de matéria orgânica liberam ácido. Com KH alto, esse ácido é neutralizado. Com KH baixo, o amortecedor se esgota e o pH despenca. A API descreve exatamente esse risco: KH baixo pode levar a mudanças rápidas e grandes de pH, que estressam os peixes.'
+  - question: 'Posso usar produto de piscina para subir o KH do aquário?'
+    answer: 'Não recomendamos. Elevadores de alcalinidade para piscina aparecem até entre os mais vendidos da categoria de peixes, mas são formulados e dosados para piscina, e o rótulo que consultamos não informa a composição. Para aquário, use um tamponador feito para aquário, com dose declarada por volume, e meça antes e depois. O custo do produto certo é pequeno perto do risco de uma variação brusca.'
+  - question: 'Com que frequência devo medir o KH?'
+    answer: 'A API recomenda monitorar a qualidade da água semanalmente e sempre que aparecer algum problema com os peixes. Num aquário estável, depois de algumas semanas de medições você conhece o comportamento do KH e pode espaçar. Meça sempre antes e depois de corrigir, e nos dias seguintes, para confirmar que a correção se manteve.'
+  - question: 'A troca parcial de água ajuda o KH?'
+    answer: 'Ajuda, porque repõe os carbonatos da água nova. Muitos aquários com KH que cai com o tempo se estabilizam só com trocas parciais regulares, sem nenhum produto. Antes de corrigir com tamponador, meça o KH da água da torneira: se ela já tem KH adequado, o problema provavelmente é o intervalo entre trocas, e não a falta de produto.'
+  - question: 'Qual KH é o ideal?'
+    answer: 'Depende das espécies. Peixes de água mole e ácida, como muitos da Amazônia, vivem bem em KH baixo; ciclídeos africanos, em KH alto. Para aquário comunitário tropical, faixas em torno de 3 a 6 dKH aparecem com frequência como referência de estabilidade. O caminho certo é consultar a ficha de cada espécie do seu aquário e escolher uma faixa compatível com todas, em vez de perseguir um número genérico.'
+---
+
+import AffiliateButton from '../../components/AffiliateButton.astro';
+import ComparisonTable from '../../components/ComparisonTable.astro';
+
+Quem começa no aquarismo aprende a medir amônia, nitrito e pH. O **KH** costuma ficar de fora, e é ele que explica um dos sustos mais comuns do aquário maduro: o pH que estava estável despenca de um dia para o outro, sem motivo aparente, e os peixes amanhecem estressados ou mortos.
+
+Este guia explica o que é o KH, por que ele funciona como um amortecedor do pH, como medir, e quando e como corrigir sem provocar o problema que você está tentando evitar. Os números de dose e de medição vêm da **Seachem** e da **API**, fabricantes dos produtos citados.
+
+## O que é KH
+
+KH é a **dureza carbonatada**, também chamada de **alcalinidade**. Mede a quantidade de **carbonatos e bicarbonatos** dissolvidos na água. A unidade mais usada no aquarismo é o **dKH** (grau alemão de dureza carbonatada). Um dKH equivale a cerca de **17,9 mg/L**, ou ppm, de carbonato de cálcio.
+
+A melhor forma de entender o KH é como um **amortecedor**. O aquário produz ácido o tempo todo: os peixes respiram e liberam gás carbônico, a matéria orgânica se decompõe, e as bactérias do filtro, ao transformar amônia em nitrato, consomem alcalinidade. Os carbonatos neutralizam esse ácido. Enquanto houver carbonato, o pH se mantém. Quando ele acaba, o pH cai.
+
+### KH, GH e pH não são a mesma coisa
+
+| Medida | O que mede | Por que importa |
+|---|---|---|
+| **pH** | acidez ou alcalinidade da água | cada espécie tem uma faixa confortável |
+| **KH** | carbonatos e bicarbonatos | **estabilidade do pH** |
+| **GH** | cálcio e magnésio | fisiologia de peixes, camarões e plantas |
+
+Os três se relacionam, mas contam histórias diferentes. É possível ter pH 7,0 com KH quase zero, e esse aquário está à beira de uma queda de pH.
+
+### As unidades, lado a lado
+
+Cada fabricante e cada fórum usa uma unidade. A tabela de conversão evita confusão na hora de comparar uma recomendação com a sua medição:
+
+| dKH | mg/L (ppm) de CaCO3 | meq/L |
+|---|---|---|
+| 1 | 17,9 | 0,36 |
+| 2,8 | 50 | 1 |
+| 4 | 71,6 | 1,43 |
+| 6 | 107 | 2,14 |
+| 10 | 179 | 3,57 |
+
+A Seachem, por exemplo, expressa o efeito do Alkaline Buffer em **meq/L**; o teste da API dá o resultado em **dKH**; e muitas fichas de espécies usam **ppm**.
+
+## De onde vem o ácido que consome o KH
+
+O KH não "some" à toa. O principal consumidor, num aquário maduro, é o próprio **filtro biológico**. As bactérias que transformam **amônia em nitrito e nitrito em nitrato**, a nitrificação, liberam ácido nesse processo. A engenharia de tratamento de água usa um número clássico para isso: a nitrificação consome cerca de **7,1 mg de alcalinidade, expressa como CaCO3, para cada 1 mg de nitrogênio amoniacal** convertido.
+
+Traduzindo para o aquário: **cada grama de ração** que entra vira, no fim, amônia, e cada amônia processada pelo filtro gasta um pouco do KH. Por isso:
+
+- o aquário **mais povoado** e **mais alimentado** consome KH mais rápido;
+- o aquário com **filtro biológico eficiente** também consome, porque é justamente o filtro que faz a nitrificação. Não é defeito, é química;
+- o **nitrato** acumulado e o **KH em queda** costumam andar juntos, e os dois se resolvem com a mesma coisa: **troca parcial de água**.
+
+Outras fontes de acidez são a **respiração** de peixes, plantas e bactérias, que libera CO2, e a **decomposição** de matéria orgânica, como folhas mortas e restos de comida.
+
+## O problema do KH baixo
+
+A **API** resume o risco na página do seu kit de teste: **KH baixo pode levar a mudanças rápidas e grandes de pH, que estressam os peixes**. É o chamado "crash" de pH.
+
+O cenário típico é o aquário que funciona bem por meses e, sem que nada pareça ter mudado, apresenta peixes apáticos, respirando rápido e escondidos. Ao medir, o pH está muito abaixo do normal. O que aconteceu foi um consumo lento do KH, semana após semana, até o amortecedor se esgotar.
+
+Situações que aceleram esse consumo:
+
+- **Intervalos longos entre trocas de água.** A troca repõe carbonatos; sem ela, o KH só cai.
+- **Aquário muito povoado ou com muita comida**, que aumenta a produção de ácido.
+- **Água de torneira ou de osmose com KH baixo desde o início.**
+- **Substratos e madeiras que acidificam a água.**
+
+## Como medir o KH
+
+![Kit de teste API GH e KH para água doce](/images/produtos/api-teste-gh-kh.webp)
+
+O **API GH & KH** é o teste de dureza mais avaliado da Amazon, com **5,6 mil avaliações**. Ele usa **reagentes líquidos** e mede GH e KH em separado. A leitura é feita pela **contagem de gotas**: você pinga o reagente numa amostra de água e conta quantas gotas são necessárias para a cor mudar. O número de gotas indica o valor de KH, conforme a tabela do manual.
+
+A vantagem do método por gotas é não depender de comparar tons de cor numa cartela, que é onde os testes de fita mais erram. Siga o volume de amostra e o procedimento do manual à risca: é isso que garante a precisão.
+
+O procedimento de KH, pelo manual da API:
+
+1. Encha o tubo de ensaio com **5 mL** de água do aquário, até a marca.
+2. Com o frasco na **vertical**, pingue o reagente de KH **uma gota por vez**, contando as gotas.
+3. Tampe e **inverta o tubo** algumas vezes depois de cada gota.
+4. O teste termina quando a água passa de **azul para amarelo**. O número de gotas é o valor de KH.
+
+Com a amostra de 5 mL, **cada gota corresponde a cerca de 1 dKH**, ou 17,9 mg/L. Três erros comuns: segurar o frasco inclinado, o que muda o tamanho da gota; não misturar depois de cada gota; e usar tubo com resíduo do teste anterior. Para uma leitura mais fina em KH baixo, alguns aquaristas dobram a amostra para **10 mL**, e aí cada gota passa a valer cerca de **meio dKH**. Não é o procedimento do manual, e a conta é por sua conta.
+
+A API recomenda **testar semanalmente** e sempre que surgir um problema com a água ou os peixes.
+
+<AffiliateButton href="https://www.amazon.com.br/dp/B003SNCHMA?tag=abanou-20" store="amazon" source="kh-alcalinidade-aquario-quando-corrigir" />
+
+## Qual é o KH certo
+
+Não existe um número universal: **depende das espécies**. Peixes de água mole e ácida, como muitos da bacia amazônica, vivem bem com KH baixo. Ciclídeos africanos dos lagos Malawi e Tanganica pedem KH alto.
+
+Para aquário comunitário tropical, faixas em torno de **3 a 6 dKH** aparecem com frequência como referência de estabilidade. O caminho certo é consultar a ficha de cada espécie do seu aquário, em fontes como a *Seriously Fish*, e escolher uma faixa compatível com todas.
+
+Se você ainda está planejando o aquário, vale conferir a compatibilidade de espécies e de número de peixes em [quantos peixes cabem no aquário](/posts/quantos-peixes-cabem-no-aquario/).
+
+## Antes de corrigir: meça a água da torneira
+
+Uma verificação simples que economiza dinheiro e evita correção desnecessária:
+
+1. **Meça o KH do aquário.**
+2. **Meça o KH da água que você usa na troca**, depois de tratada com anticloro.
+3. Compare:
+   - **Água nova com KH bom, aquário com KH baixo:** o problema é o intervalo entre trocas. Aumente a frequência das trocas parciais antes de pensar em produto.
+   - **Água nova com KH baixo também:** a correção com tamponador faz sentido.
+
+Muitos aquários se estabilizam só com trocas parciais regulares, sem nenhum produto. A técnica de troca sem estressar os peixes está em [sifão no aquário: troca parcial de água sem estressar o peixe](/posts/sifao-troca-parcial-agua-aquario/).
+
+## Como subir o KH com segurança
+
+![Seachem Alkaline Buffer, tamponador sem fosfato](/images/produtos/seachem-alkaline-buffer-70g.webp)
+
+O **Seachem Alkaline Buffer** é um tamponador **sem fosfato**, indicado pela Seachem para aquário plantado e para situações em que tamponadores à base de fosfato poderiam causar algas ou turvação. Ele **aumenta o pH e a alcalinidade (KH)** e tampona o pH entre **7,2 e 8,5**. Tem **1,5 mil avaliações com nota 4,7**, e no momento da consulta o estoque estava baixo.
+
+A dose declarada pela Seachem é:
+
+> **1 colher de chá (6 g) para cada 80 L, diariamente, até atingir o pH desejado.** Essa dose eleva a alcalinidade em cerca de **1 meq/L, ou 2,8 dKH**.
+
+Com esse número, dá para planejar a correção. Um aquário de 80 L com KH de 1 dKH que você quer levar para cerca de 4 dKH precisa de pouco mais de uma dose. Num aquário de 40 L, a mesma dose teria o dobro do efeito, então a quantidade é a metade.
+
+### A conta passo a passo
+
+Um exemplo com um aquário de **100 L**, KH medido de **2 dKH** e objetivo de **5 dKH**:
+
+1. **Quanto falta subir:** 5 − 2 = **3 dKH**.
+2. **Quanto 6 g fazem em 100 L:** a dose de 6 g sobe 2,8 dKH em 80 L. Em 100 L, o efeito é proporcionalmente menor: 2,8 × 80 ÷ 100 ≈ **2,2 dKH**.
+3. **Quantidade total:** 3 ÷ 2,2 × 6 g ≈ **8 g**.
+4. **Como dividir:** em vez de 8 g de uma vez, algo como **4 g por dia, em dois dias**, medindo o KH antes da segunda dose.
+
+Use o **volume real de água**, não a capacidade anunciada do aquário. Substrato, pedras, decoração e a folga até a borda reduzem o volume, e um aquário "de 100 L" costuma ter bem menos água que isso. Errar para menos é mais seguro: dá para completar no dia seguinte.
+
+### E o bicarbonato de sódio?
+
+O bicarbonato de sódio de cozinha também sobe o KH, e é citado com frequência em fóruns. A química é simples: **1 g de bicarbonato em 100 L** sobe o KH em cerca de **0,33 dKH**. Três ressalvas:
+
+- ele **não tem dose de fabricante para aquário**, então a conta e o controle são todos seus;
+- ele acrescenta **sódio** à água, que se acumula se a correção for repetida por muito tempo sem trocas;
+- o produto de farmácia ou mercado precisa ser **bicarbonato puro**, não fermento em pó, que contém outros componentes.
+
+Para quem quer previsibilidade, o tamponador de aquário com dose declarada continua sendo o caminho mais seguro.
+
+<AffiliateButton href="https://www.amazon.com.br/dp/B0002A5VYI?tag=abanou-20" store="amazon" source="kh-alcalinidade-aquario-quando-corrigir" />
+
+### O erro de corrigir rápido demais
+
+A variação brusca de pH estressa os peixes tanto quanto o pH errado. Três regras:
+
+1. **Corrija aos poucos**, em doses distribuídas por dias, como a própria Seachem orienta ao falar em dose **diária** até atingir o objetivo.
+2. **Meça antes de cada nova dose**, e não só no fim.
+3. **Dissolva o produto antes** num pouco de água do próprio aquário, e adicione num ponto de boa circulação, longe dos peixes.
+
+Para quem quer um pH mais **ácido** com KH controlado, a Seachem orienta combinar o **Alkaline Buffer** com o **Acid Buffer**, numa proporção que a fabricante publica numa tabela para cada pH desejado.
+
+## E o elevador de alcalinidade de piscina?
+
+Um detalhe curioso do ranking: entre os produtos mais vendidos da categoria de **peixes** da Amazon aparece um **elevador de alcalinidade para piscina**. A descrição do produto fala em alcalinidade ideal de 80 a 120 ppm e em eficiência do cloro livre, ou seja, o uso é **piscina**, e o anúncio que consultamos **não informa a composição**.
+
+Para aquário, **não recomendamos**. Sem saber exatamente o que está sendo dissolvido e sem dose declarada por litro para aquário, o risco de uma variação brusca não compensa a economia. Use tamponador feito para aquário, com dose declarada.
+
+<ComparisonTable
+  source="kh-alcalinidade-aquario-quando-corrigir"
+  rows={[
+    { name: 'Kit de teste GH e KH', brand: 'API', rating: 4.6, highlight: 'Mede KH e GH por contagem de gotas', stores: [{ store: 'amazon', url: 'https://www.amazon.com.br/dp/B003SNCHMA?tag=abanou-20' }] },
+    { name: 'Alkaline Buffer 70 g', brand: 'Seachem', rating: 4.7, highlight: '6 g para 80 L sobem cerca de 2,8 dKH, sem fosfato', stores: [{ store: 'amazon', url: 'https://www.amazon.com.br/dp/B0002A5VYI?tag=abanou-20' }] },
+  ]}
+/>
+
+## Quando o KH está alto demais
+
+O problema oposto também existe, principalmente para quem mantém espécies de água mole. As saídas mais usadas são:
+
+- **Misturar água de osmose reversa** com a água da torneira, na proporção que leve ao KH desejado. Explicamos o funcionamento do filtro de osmose em [filtro de osmose reversa para aquário](/posts/filtro-osmose-reversa-aquario-marinho/).
+- **Madeiras e folhas** que liberam taninos e acidificam levemente a água, em aquários com essa proposta.
+
+Em qualquer caso, a mudança deve ser gradual, pelas mesmas razões que valem para subir o KH.
+
+## O KH no aquário plantado
+
+No aquário plantado, o KH se relaciona com outro fator: o **gás carbônico**. Quem injeta CO2 vê o pH cair durante o dia, e o KH é o que impede essa queda de ir longe demais. Em plantado sem injeção de CO2, o KH baixo deixa o pH mais sensível às oscilações do dia e da noite. Se esse é o seu caso, veja também [aquário plantado sem CO2](/posts/aquario-plantado-sem-co2/).
+
+## Resumo
+
+1. **KH é o amortecedor do pH.** Sem ele, o pH despenca.
+2. **Meça semanalmente** com um teste confiável, como o **API GH & KH**.
+3. **Antes de corrigir**, meça a água da torneira e aumente as trocas parciais se ela já tem KH adequado.
+4. **Para subir**, use tamponador de aquário com dose declarada, como o **Seachem Alkaline Buffer**, **aos poucos**.
+5. **Não use produto de piscina** no aquário.
+
+Se você está montando a rotina de testes, os outros parâmetros que valem medir estão em [teste de água do aquário: amônia, pH e nitrito na prática](/posts/teste-agua-aquario-amonia-ph-nitrito/).
+
+## Fontes
+
+- API (Mars Fishcare) — página e manual do GH & KH Test Kit (procedimento, 5 mL de amostra, conversão de 17,9 mg/L por gota).
+- Seachem — página do Alkaline Buffer (dose de 6 g para 80 L e efeito de 1 meq/L, ou 2,8 dKH).
+- U.S. EPA — material técnico sobre nitrificação em sistemas de água (consumo de cerca de 7,1 mg de alcalinidade como CaCO3 por mg de nitrogênio amoniacal).
